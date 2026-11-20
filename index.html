@@ -1,1 +1,1914 @@
-SHARK NORTH
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SHARK NORTH® | Detailing Profesional A Domicilio — Buenos Aires</title>
+    <meta name="description" content="Servicios de detallado profesional a domicilio en Buenos Aires. Limpieza detallada, desinfección interior, pulidos, sellados cerámicos 1 a 4 años y ceras. Tu vehículo como 0km en casa.">
+    <meta name="theme-color" content="#FEFEFE">
+
+    <!-- PRELOAD DE LOGO MAESTRO -->
+    <link rel="preload" as="image" href="./AALogo%20circular%20de%20tibur%C3%B3n%20SHARK%20NORTH.webp">
+
+    <!-- TIPOGRAFÍAS F1 / TELEMETRÍA -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;1,700&family=JetBrains+Mono:wght@500;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. ADN CROMÁTICO SHARK NORTH (F1 WHITE CERAMIC STUDIO)
+           ========================================================================== */
+        :root {
+            --sn-white: #FEFEFE;          /* Blanco puro único */
+            --sn-surface: #F5F8FC;        /* Superficie cerámica sutil */
+            --sn-navy: #00014E;           /* Azul abisal oficial del logo */
+            --sn-ocean: #006EA1;          /* Azul tiburón oficial */
+            --sn-cyan: #00B5FE;           /* Cian hidrofóbico eléctrico */
+            --sn-chrome: #8D8D8D;         /* Gris cromo metálico */
+            --sn-ink: #000000;            /* Negro obsidiana */
+
+            --hairline: rgba(0, 1, 78, 0.12);
+            --hairline-strong: rgba(0, 1, 78, 0.24);
+            --shadow-f1: 0 14px 36px -10px rgba(0, 1, 78, 0.14), 0 4px 12px rgba(0, 110, 161, 0.08);
+            --shadow-hover: 0 22px 46px -10px rgba(0, 110, 161, 0.24), 0 0 0 1px var(--sn-cyan);
+
+            --font-display: 'Chakra Petch', sans-serif;
+            --font-ui: 'Rajdhani', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
+            --spring-mech: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            background-color: var(--sn-white);
+            color: var(--sn-ink);
+            scroll-behavior: smooth;
+            max-width: 100%;
+            overflow-x: clip;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-ui);
+            background-color: var(--sn-white);
+            color: var(--sn-ink);
+            min-height: 100vh;
+            min-height: 100dvh;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: max(40px, env(safe-area-inset-bottom));
+        }
+
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+
+        /* ==========================================================================
+           2. FONDO BLANCO ÚNICO CON LÍNEAS AERODINÁMICAS F1 SUTILES
+           ========================================================================== */
+        .f1-aero-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(0, 181, 254, 0.06) 0%, transparent 45%),
+                radial-gradient(circle at 12% 75%, rgba(0, 110, 161, 0.05) 0%, transparent 45%),
+                linear-gradient(180deg, #FEFEFE 0%, #F7FAFD 100%);
+        }
+
+        .f1-aero-grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.35;
+            background-image:
+                linear-gradient(to right, rgba(0, 1, 78, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 1, 78, 0.03) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 85%, transparent 100%);
+        }
+
+        /* ==========================================================================
+           3. TELEMETRY TOP STRIP (STICKY F1 PIT-WALL)
+           ========================================================================== */
+        .pit-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            width: 100%;
+            background: rgba(254, 254, 254, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1.5px solid var(--sn-navy);
+        }
+
+        .pit-topbar-inner {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 8px clamp(12px, 3vw, 24px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .pit-brand-mini {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .pit-live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--sn-cyan);
+            box-shadow: 0 0 10px var(--sn-cyan);
+            flex-shrink: 0;
+            animation: pulseBeacon 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseBeacon {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%      { transform: scale(1.35); opacity: 0.65; }
+        }
+
+        .pit-brand-code {
+            font-family: var(--font-mono);
+            font-size: clamp(0.60rem, 2.2vw, 0.70rem);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pit-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .mech-pill-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            background: var(--sn-white);
+            border: 1.5px solid var(--sn-navy);
+            border-bottom: 3px solid var(--sn-navy);
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+            clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+            transition: transform 0.12s var(--spring-mech), background 0.18s ease, color 0.18s ease;
+        }
+
+        .mech-pill-btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 1.5px;
+        }
+
+        .mech-pill-btn.active-cyan {
+            background: var(--sn-navy);
+            color: var(--sn-cyan);
+            border-color: var(--sn-navy);
+        }
+
+        /* ==========================================================================
+           4. CONTENEDOR MAESTRO RESPONSIVE (IG OVERVIEW 320px -> PC 1060px)
+           ========================================================================== */
+        .f1-shell {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: clamp(12px, 2.5vw, 22px) clamp(12px, 3.2vw, 24px) 28px;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(18px, 3vw, 26px);
+        }
+
+        /* ==========================================================================
+           5. HERO VIDEO DIFUMINADO + SHADER WEBGL HIDROFÓBICO + LOGO FÍSICO
+           ========================================================================== */
+        .hero-aero-stage {
+            position: relative;
+            width: 100%;
+            border-radius: 0;
+            border: 2px solid var(--sn-navy);
+            border-bottom: 5px solid var(--sn-navy);
+            background: #00014E;
+            overflow: hidden;
+            clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+            box-shadow: 0 22px 48px -12px rgba(0, 1, 78, 0.25);
+            min-height: clamp(390px, 62vh, 510px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: maskWipeIn 0.85s var(--ease-cine) forwards;
+        }
+
+        @keyframes maskWipeIn {
+            0%   { opacity: 0; transform: translateY(14px) scale(0.985); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: blur(2.5px) contrast(1.08) saturate(1.1);
+            transform: scale(1.04);
+            opacity: 0.72;
+            z-index: 1;
+        }
+
+        /* Velo cromático F1 calibrado para que el video difuminado se funda con la marca */
+        .hero-aero-scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background:
+                radial-gradient(ellipse at 50% 42%, rgba(0, 1, 78, 0.34) 0%, rgba(0, 1, 78, 0.78) 72%, rgba(0, 0, 0, 0.90) 100%),
+                linear-gradient(180deg, rgba(0, 1, 78, 0.28) 0%, rgba(0, 110, 161, 0.18) 55%, rgba(0, 1, 78, 0.86) 100%);
+            pointer-events: none;
+        }
+
+        /* Canvas WebGL GPU (Onda hidrofóbica FBM + Micro-espuma Snow Foam) */
+        #hydroWebGLCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .hero-content-layer {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 720px;
+            padding: clamp(22px, 4vw, 38px) clamp(16px, 4vw, 32px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+        }
+
+        /* Logo Circular con Resorte 3D de Segundo Orden + Sheen Especular */
+        .shark-logo-spring {
+            width: clamp(112px, 28vw, 148px);
+            height: clamp(112px, 28vw, 148px);
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 18px rgba(0, 181, 254, 0.45));
+            will-change: transform;
+            overflow: hidden;
+            border: 2.5px solid rgba(254, 254, 254, 0.9);
+            background: #FEFEFE;
+        }
+
+        .shark-logo-spring img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+        }
+
+        /* Destello cerámico periódico sobre el logo */
+        .shark-logo-spring::after {
+            content: '';
+            position: absolute;
+            inset: -20%;
+            background: linear-gradient(115deg, transparent 35%, rgba(254, 254, 254, 0.65) 50%, rgba(0, 181, 254, 0.35) 56%, transparent 70%);
+            transform: translateX(-140%);
+            animation: ceramicSheen 4.8s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes ceramicSheen {
+            0%, 55% { transform: translateX(-140%); }
+            85%, 100% { transform: translateX(140%); }
+        }
+
+        .hero-f1-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 4px 12px;
+            background: rgba(0, 181, 254, 0.18);
+            border: 1px solid var(--sn-cyan);
+            color: #FEFEFE;
+            font-family: var(--font-mono);
+            font-size: clamp(0.60rem, 2.2vw, 0.70rem);
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+        }
+
+        .hero-f1-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.72rem, 6.2vw, 2.95rem);
+            font-weight: 700;
+            font-style: italic;
+            line-height: 0.98;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--sn-white);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
+        }
+
+        .hero-f1-title span {
+            color: var(--sn-cyan);
+            text-shadow: 0 0 22px rgba(0, 181, 254, 0.55);
+        }
+
+        .hero-f1-sub {
+            font-size: clamp(0.88rem, 2.8vw, 1.04rem);
+            font-weight: 600;
+            color: #E2EEF8;
+            line-height: 1.38;
+            max-width: 560px;
+        }
+
+        .hero-cta-cluster {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        /* BOTÓN MECÁNICO PRINCIPAL F1 (RECORRIDO HIDRÁULICO) */
+        .btn-f1-hydraulic {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 22px;
+            background: var(--sn-cyan);
+            color: var(--sn-navy);
+            border: 2px solid #FEFEFE;
+            border-bottom: 5px solid var(--sn-ocean);
+            font-family: var(--font-display);
+            font-size: clamp(0.92rem, 3.2vw, 1.04rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            box-shadow: 0 10px 26px rgba(0, 181, 254, 0.35);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.14s var(--spring-mech), background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-f1-hydraulic:hover {
+            background: #FEFEFE;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(0, 181, 254, 0.45);
+        }
+
+        .btn-f1-hydraulic:active {
+            transform: translateY(3px);
+            border-bottom-width: 2px;
+        }
+
+        .btn-f1-ghost {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 18px;
+            background: rgba(0, 1, 78, 0.65);
+            color: #FEFEFE;
+            border: 1.5px solid rgba(254, 254, 254, 0.45);
+            border-bottom: 4px solid rgba(0, 181, 254, 0.65);
+            font-family: var(--font-display);
+            font-size: clamp(0.86rem, 3vw, 0.96rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            transition: transform 0.14s var(--spring-mech), border-color 0.2s ease;
+        }
+
+        .btn-f1-ghost:hover {
+            border-color: var(--sn-cyan);
+            transform: translateY(-2px);
+        }
+
+        .btn-f1-ghost:active {
+            transform: translateY(2px);
+        }
+
+        /* ==========================================================================
+           6. SELECTOR MECÁNICO DE VEHÍCULO (F1 PADDLE SHIFT BAR)
+           ========================================================================== */
+        .vehicle-telemetry-bar {
+            background: var(--sn-surface);
+            border: 1.5px solid var(--sn-navy);
+            border-left: 5px solid var(--sn-ocean);
+            padding: 12px 14px;
+            clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: var(--shadow-f1);
+        }
+
+        @media (min-width: 768px) {
+            .vehicle-telemetry-bar {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 12px 18px;
+            }
+        }
+
+        .vt-label-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .vt-kicker {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: var(--sn-ocean);
+            text-transform: uppercase;
+        }
+
+        .vt-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+        }
+
+        .vt-switches-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 6px;
+        }
+
+        @media (max-width: 440px) {
+            .vt-switches-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        .vt-btn {
+            padding: 8px 10px;
+            background: var(--sn-white);
+            border: 1.5px solid var(--hairline-strong);
+            border-bottom: 3.5px solid var(--hairline-strong);
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            font-weight: 800;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+            text-align: center;
+            clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+            transition: all 0.15s var(--spring-mech);
+        }
+
+        .vt-btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 1.5px;
+        }
+
+        .vt-btn.active {
+            background: var(--sn-navy);
+            color: var(--sn-white);
+            border-color: var(--sn-navy);
+            border-bottom-color: var(--sn-cyan);
+            box-shadow: 0 4px 14px rgba(0, 181, 254, 0.28);
+        }
+
+        /* ==========================================================================
+           7. ENCABEZADOS DE SECCIÓN TELEMETRÍA
+           ========================================================================== */
+        .section-head-f1 {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 2px solid var(--sn-navy);
+            padding-bottom: 8px;
+        }
+
+        .section-kicker-f1 {
+            font-family: var(--font-mono);
+            font-size: 0.64rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            color: var(--sn-ocean);
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .section-title-f1 {
+            font-family: var(--font-display);
+            font-size: clamp(1.32rem, 4.4vw, 1.75rem);
+            font-weight: 700;
+            font-style: italic;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+            line-height: 1.05;
+        }
+
+        .section-badge-f1 {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: var(--sn-navy);
+            background: rgba(0, 181, 254, 0.14);
+            border: 1px solid var(--sn-cyan);
+            padding: 3px 9px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           8. CATEGORÍAS DE SERVICIOS F1 (RECUADROS MECÁNICOS CON DETALLES)
+           ========================================================================== */
+        .services-f1-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        @media (min-width: 740px) {
+            .services-f1-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
+            }
+        }
+
+        .f1-service-card {
+            background: var(--sn-white);
+            border: 1.5px solid var(--sn-navy);
+            border-left: 6px solid var(--sn-ocean);
+            border-bottom: 4px solid var(--sn-navy);
+            padding: 18px;
+            clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+            box-shadow: var(--shadow-f1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.18s var(--spring-mech), box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .f1-service-card.featured-ceramic {
+            background: linear-gradient(155deg, #FEFEFE 0%, #EFF8FF 100%);
+            border-left-color: var(--sn-cyan);
+        }
+
+        /* Destello sutil al pasar el mouse */
+        .f1-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -120%;
+            width: 55%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 181, 254, 0.12), transparent);
+            transform: skewX(-22deg);
+            transition: left 0.55s ease;
+            pointer-events: none;
+        }
+
+        @media (hover: hover) {
+            .f1-service-card:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--sn-ocean);
+            }
+            .f1-service-card:hover::before {
+                left: 160%;
+            }
+        }
+
+        .f1-service-card:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .card-top-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .card-stage-id {
+            font-family: var(--font-mono);
+            font-size: 0.64rem;
+            font-weight: 800;
+            color: var(--sn-ocean);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .card-tag-chip {
+            font-family: var(--font-mono);
+            font-size: 0.60rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            text-transform: uppercase;
+            background: var(--sn-navy);
+            color: var(--sn-cyan);
+            border: 1px solid var(--sn-navy);
+        }
+
+        .card-tag-chip.silver {
+            background: var(--sn-surface);
+            color: var(--sn-navy);
+            border-color: var(--sn-chrome);
+        }
+
+        .card-title-f1 {
+            font-family: var(--font-display);
+            font-size: clamp(1.18rem, 3.8vw, 1.38rem);
+            font-weight: 700;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-top: 4px;
+        }
+
+        .card-list-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .spec-chip {
+            font-family: var(--font-mono);
+            font-size: 0.64rem;
+            font-weight: 700;
+            color: var(--sn-ink);
+            background: var(--sn-surface);
+            border: 1px solid var(--hairline);
+            padding: 3px 8px;
+        }
+
+        /* Selector mecánico interno de años cerámicos (1, 2, 3 y 4 años) */
+        .ceramic-years-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            margin-top: 4px;
+        }
+
+        .yr-btn {
+            padding: 6px 4px;
+            background: var(--sn-white);
+            border: 1.5px solid var(--hairline-strong);
+            border-bottom: 3px solid var(--hairline-strong);
+            font-family: var(--font-mono);
+            font-size: 0.64rem;
+            font-weight: 800;
+            color: var(--sn-navy);
+            text-align: center;
+            transition: all 0.14s var(--spring-mech);
+        }
+
+        .yr-btn:active { transform: translateY(1.5px); }
+
+        .yr-btn.active {
+            background: var(--sn-ocean);
+            color: var(--sn-white);
+            border-color: var(--sn-navy);
+            border-bottom-color: var(--sn-navy);
+        }
+
+        .card-foot-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 1px dashed var(--hairline-strong);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--sn-ocean);
+            text-transform: uppercase;
+        }
+
+        .card-foot-arrow {
+            width: 30px;
+            height: 30px;
+            background: var(--sn-navy);
+            color: var(--sn-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+            transition: transform 0.2s var(--spring-mech), background 0.2s ease;
+        }
+
+        @media (hover: hover) {
+            .f1-service-card:hover .card-foot-arrow {
+                background: var(--sn-cyan);
+                color: var(--sn-navy);
+                transform: translateX(3px);
+            }
+        }
+
+        /* ==========================================================================
+           9. GALERÍA DE VEHÍCULOS (PIT-LANE SHOWCASE · 4 FOTOS REALES)
+           ========================================================================== */
+        .fleet-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        @media (min-width: 820px) {
+            .fleet-gallery-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 340px) {
+            .fleet-gallery-grid { grid-template-columns: 1fr; }
+        }
+
+        .fleet-card {
+            background: var(--sn-white);
+            border: 1.5px solid var(--sn-navy);
+            border-bottom: 4px solid var(--sn-navy);
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+            box-shadow: var(--shadow-f1);
+            transition: transform 0.2s var(--spring-mech), box-shadow 0.22s ease;
+        }
+
+        @media (hover: hover) {
+            .fleet-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-hover);
+            }
+        }
+
+        .fleet-img-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #E8EFF6;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .fleet-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.55s var(--ease-cine);
+        }
+
+        @media (hover: hover) {
+            .fleet-card:hover .fleet-img-wrap img { transform: scale(1.06); }
+        }
+
+        .fleet-badge-float {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0, 1, 78, 0.88);
+            color: var(--sn-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.56rem;
+            font-weight: 800;
+            padding: 3px 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .fleet-meta {
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .fleet-title {
+            font-family: var(--font-display);
+            font-size: 0.90rem;
+            font-weight: 700;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .fleet-sub {
+            font-family: var(--font-mono);
+            font-size: 0.60rem;
+            color: var(--sn-chrome);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================================================
+           10. BLOQUE CONTACTO DIRECTO CON MIKE + FOOTER
+           ========================================================================== */
+        .mike-concierge-box {
+            background: var(--sn-navy);
+            color: var(--sn-white);
+            border: 2px solid var(--sn-navy);
+            border-bottom: 5px solid var(--sn-cyan);
+            padding: clamp(18px, 3.5vw, 26px);
+            clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-content: space-between;
+            box-shadow: 0 18px 36px -10px rgba(0, 1, 78, 0.35);
+        }
+
+        @media (min-width: 740px) {
+            .mike-concierge-box {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .mike-copy h3 {
+            font-family: var(--font-display);
+            font-size: clamp(1.22rem, 4vw, 1.55rem);
+            font-style: italic;
+            text-transform: uppercase;
+            color: var(--sn-white);
+        }
+
+        .mike-copy p {
+            font-size: 0.90rem;
+            color: #CDE3F5;
+            margin-top: 4px;
+            max-width: 540px;
+        }
+
+        .mike-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .f1-footer {
+            border-top: 1.5px dashed var(--hairline-strong);
+            padding-top: 18px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-tag-f1 {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            background: var(--sn-surface);
+            border: 1.5px solid var(--sn-navy);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+        }
+
+        .footer-legal-f1 {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            color: var(--sn-chrome);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================================================
+           11. MODALES F1 (ESPECIFICACIONES DE SERVICIOS & LIGHTBOX DE FOTOS)
+           ========================================================================== */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 1, 78, 0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.22s ease, visibility 0.22s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .f1-modal-card {
+            width: 100%;
+            max-width: 500px;
+            max-height: 88dvh;
+            background: var(--sn-white);
+            border: 2px solid var(--sn-navy);
+            border-bottom: 5px solid var(--sn-cyan);
+            clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.22s var(--spring-mech);
+            box-shadow: 0 28px 64px rgba(0, 0, 0, 0.45);
+        }
+
+        .modal-backdrop.active .f1-modal-card { transform: scale(1); }
+
+        .modal-head-f1 {
+            padding: 14px 18px;
+            background: var(--sn-navy);
+            color: var(--sn-white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .modal-head-f1 h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            color: var(--sn-cyan);
+        }
+
+        .btn-modal-x {
+            width: 32px;
+            height: 32px;
+            background: var(--sn-white);
+            color: var(--sn-navy);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+        }
+
+        .btn-modal-x:hover { background: var(--sn-cyan); }
+
+        .modal-scroll-body {
+            padding: 16px 18px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-spec-item {
+            background: var(--sn-surface);
+            border: 1px solid var(--hairline);
+            border-left: 4px solid var(--sn-ocean);
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .modal-spec-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--sn-navy);
+            text-transform: uppercase;
+        }
+
+        .modal-spec-item p {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #2B3648;
+            line-height: 1.4;
+        }
+
+        .btn-spec-wpp {
+            align-self: flex-start;
+            margin-top: 4px;
+            padding: 7px 14px;
+            background: var(--sn-navy);
+            color: var(--sn-white);
+            border-bottom: 3px solid var(--sn-cyan);
+            font-family: var(--font-display);
+            font-size: 0.80rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+            transition: transform 0.14s var(--spring-mech), background 0.2s;
+        }
+
+        .btn-spec-wpp:hover { background: var(--sn-ocean); }
+        .btn-spec-wpp:active { transform: translateY(2px); }
+
+        /* LIGHTBOX */
+        .lb-stage {
+            width: 100%;
+            height: 55dvh;
+            max-height: 440px;
+            background: #040814;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .lb-stage img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lb-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--sn-white);
+            color: var(--sn-navy);
+            border: 1.5px solid var(--sn-navy);
+            font-size: 1.35rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+        }
+
+        .lb-nav-btn:hover { background: var(--sn-cyan); }
+        .lb-prev { left: 10px; }
+        .lb-next { right: 10px; }
+
+        .lb-caption-bar {
+            padding: 12px 16px;
+            background: var(--sn-surface);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--sn-navy);
+            text-align: center;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FONDO BLANCO ÚNICO CON LÍNEAS AERODINÁMICAS F1 -->
+    <div class="f1-aero-bg" aria-hidden="true">
+        <div class="f1-aero-grid"></div>
+    </div>
+
+    <!-- BARRA DE TELEMETRÍA SUPERIOR -->
+    <header class="pit-topbar">
+        <div class="pit-topbar-inner">
+            <div class="pit-brand-mini">
+                <span class="pit-live-dot"></span>
+                <span class="pit-brand-code">SHARK NORTH // DETAILING A DOMICILIO · BS AS</span>
+            </div>
+
+            <div class="pit-controls-right">
+                <button type="button" class="mech-pill-btn active-cyan" id="sfxToggleBtn" onclick="toggleSfx()" aria-label="Sonido mecánico">
+                    🔊 SFX
+                </button>
+                <a href="https://www.instagram.com/sharknorth/" target="_blank" rel="noopener noreferrer" class="mech-pill-btn" onclick="playMechClick()">
+                    IG ↗
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR MAESTRO -->
+    <main class="f1-shell">
+
+        <!-- 1. HERO AERODINÁMICO: VIDEO DIFUMINADO + SHADER WEBGL FBM + LOGO RESORTE -->
+        <section class="hero-aero-stage" id="heroStage">
+            <video id="heroBgVideo" class="hero-video-bg" autoplay loop muted playsinline webkit-playsinline preload="auto">
+                <source src="./portadavideodifuminado.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/linkuniversal/sharknorth/main/portadavideodifuminado.mp4" type="video/mp4">
+            </video>
+            <div class="hero-aero-scrim"></div>
+            <canvas id="hydroWebGLCanvas" aria-hidden="true"></canvas>
+
+            <div class="hero-content-layer">
+                <div class="shark-logo-spring" id="logoSpringBox" onclick="pulseLogo()" title="Shark North Detailing">
+                    <img
+                        src="./AALogo%20circular%20de%20tibur%C3%B3n%20SHARK%20NORTH.webp"
+                        alt="Shark North Detailing Logo Oficial"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/AALogo%20circular%20de%20tibur%C3%B3n%20SHARK%20NORTH.webp';}"
+                    >
+                </div>
+
+                <span class="hero-f1-kicker">💎 Detail Profesional · A Domicilio</span>
+
+                <h1 class="hero-f1-title">
+                    Tu vehículo como <span>0KM</span> en tu casa
+                </h1>
+
+                <p class="hero-f1-sub">
+                    Soy Mike. Protejo, restauro y mantengo tu vehículo con terminación espejo de competición, espuma activa y sellados cerámicos reales.
+                </p>
+
+                <div class="hero-cta-cluster">
+                    <a id="heroMainWpp" href="https://wa.me/5491151547411?text=%C2%A1Hola%20Mike%20de%20Shark%20North!%20Quisiera%20consultar%20por%20un%20servicio%20de%20detailing%20a%20domicilio." target="_blank" rel="noopener noreferrer" class="btn-f1-hydraulic" onclick="playMechClick()">
+                        Cotizar por WhatsApp ▸
+                    </a>
+                    <a href="#categorias" class="btn-f1-ghost" onclick="playMechClick()">
+                        Ver Servicios ↓
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SELECTOR MECÁNICO DE TIPO DE VEHÍCULO (ACTUALIZA LOS MENSAJES A MIKE) -->
+        <section class="vehicle-telemetry-bar" aria-label="Tipo de vehículo">
+            <div class="vt-label-wrap">
+                <span class="vt-kicker">01 // Configurador Rápido</span>
+                <span class="vt-title">Seleccioná tu Vehículo</span>
+            </div>
+            <div class="vt-switches-grid" id="vehicleTypeGrid">
+                <button type="button" class="vt-btn active" data-veh="Auto" onclick="selectVehicle('Auto', this)">Auto</button>
+                <button type="button" class="vt-btn" data-veh="SUV / 4x4" onclick="selectVehicle('SUV / 4x4', this)">SUV / 4x4</button>
+                <button type="button" class="vt-btn" data-veh="Pick-Up" onclick="selectVehicle('Pick-Up', this)">Pick-Up</button>
+                <button type="button" class="vt-btn" data-veh="Embarcación / Otro" onclick="selectVehicle('Embarcación / Otro', this)">Náutica / Otro</button>
+            </div>
+        </section>
+
+        <!-- 3. CATEGORÍAS DE SERVICIOS (LOS 9 SERVICIOS COMPLETOS) -->
+        <section id="categorias" style="display:flex; flex-direction:column; gap:14px;">
+            <div class="section-head-f1">
+                <div>
+                    <span class="section-kicker-f1">02 // Ingeniería Estética Automotriz</span>
+                    <h2 class="section-title-f1">Categorías de Servicio</h2>
+                </div>
+                <span class="section-badge-f1">A Domicilio</span>
+            </div>
+
+            <div class="services-f1-grid">
+
+                <!-- CATEGORÍA 1: SELLADOS CERÁMICOS (1/2/3 Y 4 AÑOS) -->
+                <article class="f1-service-card featured-ceramic" onclick="openServiceModal('ceramicos')">
+                    <div>
+                        <div class="card-top-row">
+                            <span class="card-stage-id">Stage 01 // Blindaje Líquido</span>
+                            <span class="card-tag-chip">Top Demanda</span>
+                        </div>
+                        <h3 class="card-title-f1">Sellados Cerámicos</h3>
+                        <div class="card-list-pills">
+                            <span class="spec-chip">Brillo Espejo</span>
+                            <span class="spec-chip">Efecto Hidrofóbico</span>
+                            <span class="spec-chip">Protección UV</span>
+                        </div>
+
+                        <!-- Selector mecánico directo de duración (1, 2, 3, 4 años) -->
+                        <div class="ceramic-years-bar" onclick="event.stopPropagation()">
+                            <button type="button" class="yr-btn active" data-yr="1 Año" onclick="selectCeramicYear('1 Año', this)">1 Año</button>
+                            <button type="button" class="yr-btn" data-yr="2 Años" onclick="selectCeramicYear('2 Años', this)">2 Años</button>
+                            <button type="button" class="yr-btn" data-yr="3 Años" onclick="selectCeramicYear('3 Años', this)">3 Años</button>
+                            <button type="button" class="yr-btn" data-yr="4 Años" onclick="selectCeramicYear('4 Años', this)">4 Años</button>
+                        </div>
+                    </div>
+
+                    <div class="card-foot-action">
+                        <span id="ceramicCardSummary">Seleccionado: 1 Año · Ver Detalles</span>
+                        <span class="card-foot-arrow">▸</span>
+                    </div>
+                </article>
+
+                <!-- CATEGORÍA 2: DETALLADOS EXTERIORES, PULIDOS & LIMPIEZA DETALLADA -->
+                <article class="f1-service-card" onclick="openServiceModal('exterior')">
+                    <div>
+                        <div class="card-top-row">
+                            <span class="card-stage-id">Stage 02 // Corrección &amp; Lavado</span>
+                            <span class="card-tag-chip silver">Exterior</span>
+                        </div>
+                        <h3 class="card-title-f1">Detallados Exteriores &amp; Pulidos</h3>
+                        <div class="card-list-pills">
+                            <span class="spec-chip">Limpieza detallada profesional</span>
+                            <span class="spec-chip">Detallados exteriores</span>
+                            <span class="spec-chip">Pulidos</span>
+                        </div>
+                    </div>
+
+                    <div class="card-foot-action">
+                        <span>Snow Foam + Corrección de Laca</span>
+                        <span class="card-foot-arrow">▸</span>
+                    </div>
+                </article>
+
+                <!-- CATEGORÍA 3: DESINFECCIÓN INTERIOR & SELLADOS DE CABINA -->
+                <article class="f1-service-card" onclick="openServiceModal('interior')">
+                    <div>
+                        <div class="card-top-row">
+                            <span class="card-stage-id">Stage 03 // Cockpit &amp; Tapizados</span>
+                            <span class="card-tag-chip silver">Interior</span>
+                        </div>
+                        <h3 class="card-title-f1">Desinfección &amp; Sellado Interior</h3>
+                        <div class="card-list-pills">
+                            <span class="spec-chip">Desinfección interior</span>
+                            <span class="spec-chip">Sellado de telas y cueros</span>
+                            <span class="spec-chip">Sellado de plásticos y gomas</span>
+                        </div>
+                    </div>
+
+                    <div class="card-foot-action">
+                        <span>Vapor + Inyección / Extracción</span>
+                        <span class="card-foot-arrow">▸</span>
+                    </div>
+                </article>
+
+                <!-- CATEGORÍA 4: CERAS & SELLADO DE CRISTALES -->
+                <article class="f1-service-card" onclick="openServiceModal('ceras')">
+                    <div>
+                        <div class="card-top-row">
+                            <span class="card-stage-id">Stage 04 // Acabado &amp; Visión</span>
+                            <span class="card-tag-chip silver">Protección</span>
+                        </div>
+                        <h3 class="card-title-f1">Ceras &amp; Sellado de Cristales</h3>
+                        <div class="card-list-pills">
+                            <span class="spec-chip">Sellado de cristales</span>
+                            <span class="spec-chip">Ceras cerámicas</span>
+                            <span class="spec-chip">Carnauba &amp; Sintéticas</span>
+                        </div>
+                    </div>
+
+                    <div class="card-foot-action">
+                        <span>Repelencia de Lluvia + Profundidad</span>
+                        <span class="card-foot-arrow">▸</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- 4. GALERÍA DE VEHÍCULOS (LAS 4 FOTOS REALES DEL REPO) -->
+        <section id="vehiculos" style="display:flex; flex-direction:column; gap:14px;">
+            <div class="section-head-f1">
+                <div>
+                    <span class="section-kicker-f1">03 // Resultados Reales</span>
+                    <h2 class="section-title-f1">Vehículos &amp; Acabados</h2>
+                </div>
+                <span class="section-badge-f1">4 Unidades</span>
+            </div>
+
+            <div class="fleet-gallery-grid">
+
+                <article class="fleet-card" onclick="openLightbox(0)">
+                    <div class="fleet-img-wrap">
+                        <span class="fleet-badge-float">Gloss Mirror</span>
+                        <img
+                            src="./20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp"
+                            alt="Detailing de precisión en deportivo"
+                            loading="lazy"
+                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp';}"
+                        >
+                    </div>
+                    <div class="fleet-meta">
+                        <h3 class="fleet-title">Tratamiento Cerámico</h3>
+                        <span class="fleet-sub">Brillo Profundo · UV</span>
+                    </div>
+                </article>
+
+                <article class="fleet-card" onclick="openLightbox(1)">
+                    <div class="fleet-img-wrap">
+                        <span class="fleet-badge-float">Rear Trim</span>
+                        <img
+                            src="./black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp"
+                            alt="Detallado posterior y escapes en deportivo negro"
+                            loading="lazy"
+                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp';}"
+                        >
+                    </div>
+                    <div class="fleet-meta">
+                        <h3 class="fleet-title">Pulido &amp; Cromos</h3>
+                        <span class="fleet-sub">Laca Negra · Escapes</span>
+                    </div>
+                </article>
+
+                <article class="fleet-card" onclick="openLightbox(2)">
+                    <div class="fleet-img-wrap">
+                        <span class="fleet-badge-float">Front Aero</span>
+                        <img
+                            src="./front-view-black-sedan-sport-car-bridge.webp"
+                            alt="Sedán deportivo negro con protección cerámica"
+                            loading="lazy"
+                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/front-view-black-sedan-sport-car-bridge.webp';}"
+                        >
+                    </div>
+                    <div class="fleet-meta">
+                        <h3 class="fleet-title">Sellado Integral</h3>
+                        <span class="fleet-sub">Cristales · Ópticas</span>
+                    </div>
+                </article>
+
+                <article class="fleet-card" onclick="openLightbox(3)">
+                    <div class="fleet-img-wrap">
+                        <span class="fleet-badge-float">Metallic Wax</span>
+                        <img
+                            src="./metallic-color-mini-coupe-driving-accross-forest.webp"
+                            alt="Coupé metálica con cera cerámica y carnauba"
+                            loading="lazy"
+                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/metallic-color-mini-coupe-driving-accross-forest.webp';}"
+                        >
+                    </div>
+                    <div class="fleet-meta">
+                        <h3 class="fleet-title">Ceras &amp; Protección</h3>
+                        <span class="fleet-sub">Metalizado · Hidrofóbico</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- 5. CONCIERGE DIRECTO CON MIKE (WHATSAPP + INSTAGRAM) -->
+        <section class="mike-concierge-box">
+            <div class="mike-copy">
+                <h3>Coordiná tu Turno con Mike</h3>
+                <p>Llevamos todo el equipamiento, espuma activa, vapor y productos profesionales directo a tu domicilio en Buenos Aires.</p>
+            </div>
+            <div class="mike-actions">
+                <a id="footerWppBtn" href="https://wa.me/5491151547411?text=%C2%A1Hola%20Mike%20de%20Shark%20North!%20Quisiera%20coordinar%20un%20turno%20a%20domicilio." target="_blank" rel="noopener noreferrer" class="btn-f1-hydraulic" onclick="playMechClick()">
+                    WhatsApp: 11 5154-7411 ▸
+                </a>
+                <a href="https://www.instagram.com/sharknorth/" target="_blank" rel="noopener noreferrer" class="btn-f1-ghost" onclick="playMechClick()">
+                    @sharknorth ↗
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="f1-footer">
+            <div class="footer-tag-f1">
+                <span>SHARK NORTH®</span>
+                <span style="color:var(--sn-cyan);">//</span>
+                <span>DETAILING BUENOS AIRES</span>
+            </div>
+            <p class="footer-legal-f1">
+                AUTOMÓVILES · SUVS · EMBARCACIONES · SERVICIO A DOMICILIO · +54 9 11 5154-7411
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- ==========================================================================
+         MODAL DE ESPECIFICACIONES DE SERVICIO
+         ========================================================================== -->
+    <div class="modal-backdrop" id="serviceModal" onclick="closeServiceModal(event)" role="dialog" aria-modal="true">
+        <div class="f1-modal-card" onclick="event.stopPropagation()">
+            <div class="modal-head-f1">
+                <h3 id="modalServiceTitle">// Detalle de Servicio</h3>
+                <button type="button" class="btn-modal-x" onclick="closeServiceModal()" aria-label="Cerrar">✕</button>
+            </div>
+            <div class="modal-scroll-body" id="modalServiceBody"></div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         LIGHTBOX DE GALERÍA DE VEHÍCULOS
+         ========================================================================== -->
+    <div class="modal-backdrop" id="lightboxModal" onclick="closeLightbox(event)" role="dialog" aria-modal="true">
+        <div class="f1-modal-card" onclick="event.stopPropagation()">
+            <div class="modal-head-f1">
+                <h3 id="lbCounter">1 / 4</h3>
+                <button type="button" class="btn-modal-x" onclick="closeLightbox()" aria-label="Cerrar">✕</button>
+            </div>
+            <div class="lb-stage" id="lbSwipeArea">
+                <button type="button" class="lb-nav-btn lb-prev" onclick="navLightbox(-1)" aria-label="Anterior">‹</button>
+                <img id="lbImg" src="" alt="Vehículo Shark North">
+                <button type="button" class="lb-nav-btn lb-next" onclick="navLightbox(1)" aria-label="Siguiente">›</button>
+            </div>
+            <div class="lb-caption-bar" id="lbCaption">Shark North Detailing</div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         MOTORES MATEMÁTICOS:
+         1. SHADER WEBGL GPU (FBM + DOMAIN WARPING + EFECTO HIDROFÓBICO INTERACTIVO)
+         2. FÍSICA DE RESORTE DE 2° ORDEN PARA EL LOGO
+         3. SINTETIZADOR MECÁNICO WEB AUDIO + HÁPTICA
+         4. BLINDAJE DE VIDEO & CONFIGURADOR DE PRESUPUESTOS POR WHATSAPP
+         ========================================================================== -->
+    <script>
+        const WPP_NUMBER = "5491151547411";
+        let selectedVehicle = "Auto";
+        let selectedCeramicYear = "1 Año";
+        let sfxEnabled = true;
+        let audioCtx = null;
+
+        // =========================================================
+        // 1. SINTETIZADOR MECÁNICO F1 + VIBRACIÓN HÁPTICA
+        // =========================================================
+        function playMechClick(freq = 640) {
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                try { navigator.vibrate(8); } catch (_) {}
+            }
+            if (!sfxEnabled) return;
+            try {
+                if (!audioCtx) {
+                    const AC = window.AudioContext || window.webkitAudioContext;
+                    if (AC) audioCtx = new AC();
+                }
+                if (!audioCtx) return;
+                if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now);
+                osc.frequency.exponentialRampToValueAtTime(160, now + 0.045);
+                gain.gain.setValueAtTime(0.09, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.055);
+            } catch (_) {}
+        }
+
+        function toggleSfx() {
+            sfxEnabled = !sfxEnabled;
+            const btn = document.getElementById('sfxToggleBtn');
+            btn.textContent = sfxEnabled ? '🔊 SFX' : '🔇 MUTE';
+            btn.classList.toggle('active-cyan', sfxEnabled);
+            if (sfxEnabled) playMechClick(820);
+        }
+
+        // =========================================================
+        // 2. SHADER WEBGL GPU (MATEMÁTICA FBM + ONDA HIDROFÓBICA DE FLAME-LAYER.TS)
+        // =========================================================
+        const HydroShaderEngine = (() => {
+            const canvas = document.getElementById('hydroWebGLCanvas');
+            const stage = document.getElementById('heroStage');
+            const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false });
+
+            if (!gl) return { setPointer: () => {}, setPaused: () => {} };
+
+            const VS = `attribute vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }`;
+            const FS = `
+                precision mediump float;
+                uniform vec2 uRes;
+                uniform float uTime;
+                uniform vec2 uPtr;
+                uniform float uPtrActive;
+
+                float hash(vec2 p) {
+                    p = fract(p * vec2(123.34, 456.21));
+                    p += dot(p, p + 45.32);
+                    return fract(p.x * p.y);
+                }
+                float noise(vec2 p) {
+                    vec2 i = floor(p);
+                    vec2 f = fract(p);
+                    f = f * f * (3.0 - 2.0 * f);
+                    return mix(
+                        mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                        mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x),
+                        f.y
+                    );
+                }
+                float fbm(vec2 p) {
+                    float v = 0.0;
+                    float a = 0.5;
+                    for (int i = 0; i < 4; i++) {
+                        v += a * noise(p);
+                        p = p * 2.02 + vec2(13.1, 7.7);
+                        a *= 0.5;
+                    }
+                    return v;
+                }
+
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / uRes;
+                    vec2 p = uv * vec2(uRes.x / max(1.0, uRes.y), 1.0);
+
+                    // Flujo aerodinámico / espuma activa (FBM con Domain Warping)
+                    float flow = uTime * 0.28;
+                    vec2 q = vec2(
+                        fbm(p * 2.2 + vec2(flow, flow * 0.4)),
+                        fbm(p * 2.2 + vec2(5.2 - flow * 0.3, 1.3))
+                    );
+                    float foam = fbm(p * 3.1 + q * 1.4 - vec2(0.0, flow * 0.6));
+
+                    // Onda hidrofóbica reactiva al puntero / dedo
+                    vec2 ptrP = uPtr * vec2(uRes.x / max(1.0, uRes.y), 1.0);
+                    float dPtr = length(p - ptrP);
+                    float ripple = sin(dPtr * 28.0 - uTime * 7.0) * exp(-dPtr * 4.5) * uPtrActive;
+
+                    // Destellos especulares tipo recubrimiento cerámico (#00B5FE -> #FEFEFE)
+                    float spec = smoothstep(0.64, 0.92, foam + ripple * 0.35);
+                    float glint = smoothstep(0.78, 0.96, foam + abs(ripple) * 0.5);
+
+                    vec3 cyan = vec3(0.0, 0.71, 0.996);   // #00B5FE
+                    vec3 white = vec3(0.996, 0.996, 0.996); // #FEFEFE
+                    vec3 col = mix(cyan, white, glint);
+
+                    // Atenuación elegante en bordes
+                    float edge = smoothstep(0.0, 0.22, uv.y) * smoothstep(1.0, 0.78, uv.y);
+                    float alpha = (spec * 0.26 + abs(ripple) * 0.30) * edge;
+
+                    gl_FragColor = vec4(col * alpha, alpha);
+                }
+            `;
+
+            function compile(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+            }
+
+            const prog = gl.createProgram();
+            gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+            gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+            const loc = gl.getAttribLocation(prog, 'p');
+            gl.enableVertexAttribArray(loc);
+            gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+            const uRes = gl.getUniformLocation(prog, 'uRes');
+            const uTime = gl.getUniformLocation(prog, 'uTime');
+            const uPtr = gl.getUniformLocation(prog, 'uPtr');
+            const uPtrActive = gl.getUniformLocation(prog, 'uPtrActive');
+
+            let ptrX = 0.5, ptrY = 0.5, ptrGoal = 0, ptrVal = 0, paused = false;
+
+            function resize() {
+                const dpr = Math.min(1.5, window.devicePixelRatio || 1);
+                canvas.width = Math.max(2, Math.floor(stage.clientWidth * dpr));
+                canvas.height = Math.max(2, Math.floor(stage.clientHeight * dpr));
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            function loop(now) {
+                requestAnimationFrame(loop);
+                if (paused) return;
+                ptrVal += (ptrGoal - ptrVal) * 0.08;
+                ptrGoal *= 0.96;
+                gl.uniform2f(uRes, canvas.width, canvas.height);
+                gl.uniform1f(uTime, now * 0.001);
+                gl.uniform2f(uPtr, ptrX, ptrY);
+                gl.uniform1f(uPtrActive, ptrVal);
+                gl.drawArrays(gl.TRIANGLES, 0, 3);
+            }
+            requestAnimationFrame(loop);
+
+            return {
+                setPointer(nx, ny) { ptrX = nx; ptrY = 1.0 - ny; ptrGoal = 1.0; },
+                setPaused(v) { paused = v; }
+            };
+        })();
+
+        // =========================================================
+        // 3. FÍSICA DE RESORTE DE 2° ORDEN PARA EL LOGO (DE SCENE.TS)
+        // =========================================================
+        const LogoSpring = (() => {
+            const box = document.getElementById('logoSpringBox');
+            const stage = document.getElementById('heroStage');
+            let x = 0, y = 0, vx = 0, vy = 0, gx = 0, gy = 0, scaleBoost = 0, scaleVel = 0;
+
+            stage.addEventListener('pointermove', (e) => {
+                const r = stage.getBoundingClientRect();
+                const nx = (e.clientX - r.left) / Math.max(1, r.width);
+                const ny = (e.clientY - r.top) / Math.max(1, r.height);
+                gx = (nx - 0.5) * 14;
+                gy = (ny - 0.5) * 10;
+                HydroShaderEngine.setPointer(nx, ny);
+            }, { passive: true });
+
+            stage.addEventListener('pointerleave', () => { gx = 0; gy = 0; });
+
+            let last = performance.now();
+            function tick(now) {
+                requestAnimationFrame(tick);
+                const dt = Math.min(0.05, (now - last) / 1000);
+                last = now;
+                const t = now * 0.001;
+                const breathY = Math.sin(t * 2.1) * 3.5;
+
+                // Resorte amortiguado de 2° orden
+                vx += ((gx - x) * 58 - vx * 9.5) * dt;
+                vy += ((gy - y) * 58 - vy * 9.5) * dt;
+                x += vx * dt;
+                y += vy * dt;
+
+                scaleVel += ((0 - scaleBoost) * 90 - scaleVel * 10) * dt;
+                scaleBoost += scaleVel * dt;
+
+                const s = 1 + scaleBoost;
+                box.style.transform = `translate3d(${x.toFixed(2)}px, ${(y + breathY).toFixed(2)}px, 0) rotate(${(x * 0.35).toFixed(2)}deg) scale(${s.toFixed(3)})`;
+            }
+            requestAnimationFrame(tick);
+
+            return {
+                kick() { scaleVel = 1.65; }
+            };
+        })();
+
+        function pulseLogo() {
+            playMechClick(740);
+            LogoSpring.kick();
+        }
+
+        // =========================================================
+        // 4. CONFIGURADOR DE VEHÍCULO, AÑOS CERÁMICOS & WHATSAPP
+        // =========================================================
+        function buildWppUrl(serviceText) {
+            const msg = `¡Hola Mike de Shark North! 🦈\n\nQuisiera consultar presupuesto a domicilio para:\n• *Vehículo:* ${selectedVehicle}\n• *Servicio:* ${serviceText}`;
+            return `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+        }
+
+        function refreshGlobalWppLinks() {
+            const heroBtn = document.getElementById('heroMainWpp');
+            const footBtn = document.getElementById('footerWppBtn');
+            if (heroBtn) heroBtn.href = buildWppUrl("Asesoramiento y Presupuesto General");
+            if (footBtn) footBtn.href = buildWppUrl("Coordinar turno a domicilio");
+        }
+
+        function selectVehicle(veh, btn) {
+            playMechClick(680);
+            selectedVehicle = veh;
+            document.querySelectorAll('#vehicleTypeGrid .vt-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            refreshGlobalWppLinks();
+        }
+
+        function selectCeramicYear(yr, btn) {
+            playMechClick(780);
+            selectedCeramicYear = yr;
+            document.querySelectorAll('.ceramic-years-bar .yr-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            document.getElementById('ceramicCardSummary').textContent = `Seleccionado: ${yr} · Ver Detalles`;
+        }
+
+        // =========================================================
+        // 5. MODAL DE CATEGORÍAS CON TODOS LOS SERVICIOS REALES
+        // =========================================================
+        const SERVICES_DATA = {
+            ceramicos: {
+                title: "Sellados Cerámicos (1 a 4 Años)",
+                getItems: () => [
+                    {
+                        name: `Sellado Cerámico · ${selectedCeramicYear}`,
+                        desc: "Protección química de alta dureza sobre la laca. Brillo espejo profundo, repelencia extrema al agua y suciedad (efecto hidrofóbico), y barrera contra rayos UV, excremento de aves y lluvia ácida."
+                    },
+                    {
+                        name: "Opciones Disponibles (1 / 2 / 3 y 4 Años)",
+                        desc: "Adaptamos el recubrimiento cerámico según el uso y exposición de tu vehículo, siempre previa preparación y descontaminado profesional a domicilio."
+                    }
+                ]
+            },
+            exterior: {
+                title: "Detallados Exteriores & Pulidos",
+                getItems: () => [
+                    {
+                        name: "Limpieza Detallada Profesional",
+                        desc: "Lavado profundo con pre-lavado Snow Foam (espuma activa pH neutro), limpieza minuciosa de llantas, pasarruedas, emblemas y marcos de puerta sin generar micro-rayas."
+                    },
+                    {
+                        name: "Detallados Exteriores",
+                        desc: "Descontaminado químico y mecánico (clay bar) para remover impurezas incrustadas en el barniz, devolviendo suavidad y claridad total a la pintura."
+                    },
+                    {
+                        name: "Pulidos",
+                        desc: "Corrección de barniz con pulidoras orbitales de precisión para eliminar swirls (telarañas), marcas de lavado, rayas superficiales y recuperar el brillo original."
+                    }
+                ]
+            },
+            interior: {
+                title: "Interior, Tapizados & Desinfección",
+                getItems: () => [
+                    {
+                        name: "Desinfección Interior",
+                        desc: "Higienización profunda de cabina, conductos de ventilación, alfombras, techos y butacas con vapor de alta temperatura y limpiadores específicos."
+                    },
+                    {
+                        name: "Sellado de Telas y Cueros",
+                        desc: "Protección hidrofóbica para tapizados de tela (repele líquidos y manchas) y nutrición/sellado mate sin grasitud para butacas y volantes de cuero."
+                    },
+                    {
+                        name: "Sellado de Plásticos y Gomas",
+                        desc: "Acondicionamiento y sellado protector anti-estático y filtro UV para tableros, paneles de puertas, burletes y molduras exteriores."
+                    }
+                ]
+            },
+            ceras: {
+                title: "Ceras & Sellado de Cristales",
+                getItems: () => [
+                    {
+                        name: "Ceras (Cerámicas, Carnauba y Sintéticas)",
+                        desc: "Aplicación artesanal según el acabado deseado: calidez y profundidad con Carnauba pura, durabilidad sintética o refuerzo hidrofóbico con cera cerámica."
+                    },
+                    {
+                        name: "Sellado de Cristales",
+                        desc: "Tratamiento repelente de lluvia para parabrisas, lunetas y vidrios laterales. Mejora drásticamente la visibilidad nocturna y bajo lluvia en ruta."
+                    }
+                ]
+            }
+        };
+
+        function openServiceModal(key) {
+            playMechClick(700);
+            const data = SERVICES_DATA[key];
+            if (!data) return;
+            document.getElementById('modalServiceTitle').textContent = `// ${data.title}`;
+            const body = document.getElementById('modalServiceBody');
+            body.innerHTML = data.getItems().map(item => `
+                <div class="modal-spec-item">
+                    <h4>${item.name}</h4>
+                    <p>${item.desc}</p>
+                    <a href="${buildWppUrl(item.name)}" target="_blank" rel="noopener noreferrer" class="btn-spec-wpp" onclick="playMechClick(760)">
+                        Cotizar ${item.name} para ${selectedVehicle} ▸
+                    </a>
+                </div>
+            `).join('');
+            document.getElementById('serviceModal').classList.add('active');
+        }
+
+        function closeServiceModal(e) {
+            if (e && e.target !== document.getElementById('serviceModal')) return;
+            playMechClick(480);
+            document.getElementById('serviceModal').classList.remove('active');
+        }
+
+        // =========================================================
+        // 6. LIGHTBOX DE VEHÍCULOS (CON SWIPE TÁCTIL Y TECLADO)
+        // =========================================================
+        const FLEET_PHOTOS = [
+            {
+                file: '20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp',
+                caption: 'Tratamiento Cerámico · Terminación Espejo y Protección UV'
+            },
+            {
+                file: 'black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp',
+                caption: 'Pulido de Precisión & Detallado de Escapes / Sector Posterior'
+            },
+            {
+                file: 'front-view-black-sedan-sport-car-bridge.webp',
+                caption: 'Sellado Integral · Cristales, Ópticas y Carrocería Oscura'
+            },
+            {
+                file: 'metallic-color-mini-coupe-driving-accross-forest.webp',
+                caption: 'Ceras Cerámicas & Carnauba · Realce Metálico e Hidrofóbico'
+            }
+        ];
+
+        const RAW_BASE = 'https://raw.githubusercontent.com/linkuniversal/sharknorth/main/';
+        let lbIdx = 0;
+
+        function renderLightbox() {
+            const item = FLEET_PHOTOS[lbIdx];
+            const img = document.getElementById('lbImg');
+            img.dataset.fb = '';
+            img.onerror = function() {
+                if (!this.dataset.fb) {
+                    this.dataset.fb = '1';
+                    this.src = RAW_BASE + encodeURIComponent(item.file);
+                }
+            };
+            img.src = './' + encodeURIComponent(item.file);
+            document.getElementById('lbCounter').textContent = `UNIDAD ${lbIdx + 1} / ${FLEET_PHOTOS.length}`;
+            document.getElementById('lbCaption').textContent = item.caption;
+        }
+
+        function openLightbox(idx) {
+            playMechClick(700);
+            lbIdx = idx;
+            renderLightbox();
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+
+        function closeLightbox(e) {
+            if (e && e.target !== document.getElementById('lightboxModal')) return;
+            playMechClick(480);
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        function navLightbox(dir) {
+            playMechClick(620);
+            lbIdx = (lbIdx + dir + FLEET_PHOTOS.length) % FLEET_PHOTOS.length;
+            renderLightbox();
+        }
+
+        let swipeX = 0;
+        const swipeEl = document.getElementById('lbSwipeArea');
+        swipeEl.addEventListener('touchstart', e => { swipeX = e.changedTouches[0].clientX; }, { passive: true });
+        swipeEl.addEventListener('touchend', e => {
+            const diff = e.changedTouches[0].clientX - swipeX;
+            if (Math.abs(diff) > 36) navLightbox(diff < 0 ? 1 : -1);
+        });
+
+        window.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.getElementById('serviceModal').classList.remove('active');
+                document.getElementById('lightboxModal').classList.remove('active');
+            } else if (document.getElementById('lightboxModal').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') navLightbox(-1);
+                if (e.key === 'ArrowRight') navLightbox(1);
+            }
+        });
+
+        // =========================================================
+        // 7. BLINDAJE DE VIDEO ANTI-FREEZE (IOS SAFARI + PAUSA INTELIGENTE)
+        // =========================================================
+        function initHeroVideoShield() {
+            const vid = document.getElementById('heroBgVideo');
+            if (!vid) return;
+            vid.defaultMuted = true;
+            vid.muted = true;
+            const tryPlay = () => vid.play().catch(() => {});
+            vid.addEventListener('loadeddata', tryPlay);
+            vid.addEventListener('canplay', tryPlay);
+
+            if ('IntersectionObserver' in window) {
+                const obs = new IntersectionObserver(entries => {
+                    entries.forEach(en => {
+                        if (en.isIntersecting) {
+                            tryPlay();
+                            HydroShaderEngine.setPaused(false);
+                        } else {
+                            vid.pause();
+                            HydroShaderEngine.setPaused(true);
+                        }
+                    });
+                }, { threshold: 0.15 });
+                obs.observe(document.getElementById('heroStage'));
+            } else {
+                tryPlay();
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initHeroVideoShield();
+            refreshGlobalWppLinks();
+        });
+    </script>
+</body>
+</html>
