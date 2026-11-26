@@ -76,35 +76,126 @@
         button { font-family: inherit; border: none; background: none; cursor: pointer; color: inherit; }
 
         /* ==========================================================================
-           2. FONDO BLANCO ÚNICO CON PATRÓN AERODINÁMICO F1 Y MATICES DE CONTRASTE
+           2. FONDO SUBMARINO LUMINOSO + BUCLE DE TIBURONES EN SVG (60FPS GPU)
            ========================================================================== */
         .f1-aero-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
+            overflow: hidden;
             background:
-                radial-gradient(circle at 88% 12%, rgba(0, 181, 254, 0.09) 0%, transparent 44%),
-                radial-gradient(circle at 10% 52%, rgba(0, 110, 161, 0.07) 0%, transparent 46%),
-                radial-gradient(circle at 85% 88%, rgba(0, 1, 78, 0.06) 0%, transparent 46%),
-                #FEFEFE;
+                radial-gradient(ellipse 90% 55% at 50% -6%, rgba(254, 254, 254, 0.98) 0%, rgba(235, 246, 254, 0.90) 48%, rgba(220, 239, 252, 0.85) 100%),
+                radial-gradient(circle at 86% 18%, rgba(0, 181, 254, 0.11) 0%, transparent 46%),
+                radial-gradient(circle at 12% 58%, rgba(0, 110, 161, 0.09) 0%, transparent 50%),
+                #F8FCFF;
         }
 
-        /* Grilla técnica F1 + franjas de túnel de viento sutiles */
-        .f1-aero-pattern {
+        /* Haces de luz solar entrando desde la superficie sin restar legibilidad */
+        .ocean-sun-rays {
             position: absolute;
-            inset: -10%;
-            opacity: 0.55;
-            background-image:
-                repeating-linear-gradient(-24deg, transparent 0px, transparent 58px, rgba(0, 110, 161, 0.032) 58px, rgba(0, 110, 161, 0.032) 60px, transparent 60px, transparent 140px, rgba(0, 181, 254, 0.035) 140px, rgba(0, 181, 254, 0.035) 142px),
-                linear-gradient(to right, rgba(0, 1, 78, 0.025) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 1, 78, 0.025) 1px, transparent 1px);
-            background-size: auto, 42px 42px, 42px 42px;
+            inset: -12% -10% 0;
+            opacity: 0.42;
+            background:
+                conic-gradient(from 162deg at 50% -12%, transparent 0deg, rgba(0, 181, 254, 0.14) 8deg, transparent 17deg, rgba(254, 254, 254, 0.65) 24deg, transparent 32deg, rgba(0, 110, 161, 0.09) 40deg, transparent 48deg);
+            transform-origin: 50% 0%;
+            animation: sunRaysSway 14s ease-in-out infinite alternate;
             will-change: transform;
         }
 
+        @keyframes sunRaysSway {
+            0%   { transform: rotate(-2deg) scale(1); }
+            100% { transform: rotate(2.5deg) scale(1.03); }
+        }
+
+        .f1-aero-pattern {
+            position: absolute;
+            inset: -10%;
+            opacity: 0.34;
+            background-image:
+                linear-gradient(to right, rgba(0, 110, 161, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 110, 161, 0.025) 1px, transparent 1px);
+            background-size: 46px 46px;
+            will-change: transform;
+        }
+
+        /* Capa SVG de Tiburones Nadando en Bucle */
+        .shark-loop-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .shark-lane {
+            will-change: transform;
+        }
+
+        .shark-lane-ltr-1 { animation: swimLTR1 26s linear infinite; animation-delay: -5s; }
+        .shark-lane-rtl-1 { animation: swimRTL1 31s linear infinite; animation-delay: -14s; }
+        .shark-lane-ltr-2 { animation: swimLTR2 36s linear infinite; animation-delay: -21s; }
+        .shark-lane-rtl-2 { animation: swimRTL2 28s linear infinite; animation-delay: -9s; }
+        .shark-lane-ltr-3 { animation: swimLTR3 40s linear infinite; animation-delay: -30s; }
+        .shark-lane-rtl-3 { animation: swimRTL3 34s linear infinite; animation-delay: -17s; }
+
+        @keyframes swimLTR1 {
+            0%   { transform: translate3d(-260px, 110px, 0) rotate(-3deg); }
+            50%  { transform: translate3d(720px, 82px, 0) rotate(1.5deg); }
+            100% { transform: translate3d(1720px, 118px, 0) rotate(-2deg); }
+        }
+        @keyframes swimRTL1 {
+            0%   { transform: translate3d(1720px, 235px, 0) scaleX(-1) rotate(-2.5deg); }
+            50%  { transform: translate3d(720px, 265px, 0) scaleX(-1) rotate(2deg); }
+            100% { transform: translate3d(-280px, 225px, 0) scaleX(-1) rotate(-2deg); }
+        }
+        @keyframes swimLTR2 {
+            0%   { transform: translate3d(-240px, 415px, 0) rotate(2deg); }
+            50%  { transform: translate3d(740px, 385px, 0) rotate(-1.5deg); }
+            100% { transform: translate3d(1720px, 420px, 0) rotate(2deg); }
+        }
+        @keyframes swimRTL2 {
+            0%   { transform: translate3d(1720px, 560px, 0) scaleX(-1) rotate(1.8deg); }
+            50%  { transform: translate3d(710px, 530px, 0) scaleX(-1) rotate(-2deg); }
+            100% { transform: translate3d(-260px, 565px, 0) scaleX(-1) rotate(1.5deg); }
+        }
+        @keyframes swimLTR3 {
+            0%   { transform: translate3d(-250px, 705px, 0) rotate(-2deg); }
+            50%  { transform: translate3d(730px, 680px, 0) rotate(1.5deg); }
+            100% { transform: translate3d(1720px, 712px, 0) rotate(-1.8deg); }
+        }
+        @keyframes swimRTL3 {
+            0%   { transform: translate3d(1700px, 815px, 0) scaleX(-1) rotate(-1.5deg); }
+            50%  { transform: translate3d(700px, 840px, 0) scaleX(-1) rotate(2deg); }
+            100% { transform: translate3d(-260px, 810px, 0) scaleX(-1) rotate(-1.5deg); }
+        }
+
+        /* Movimiento real articulado de cola y cuerpo del tiburón */
+        .shark-tail-fin {
+            transform-box: fill-box;
+            transform-origin: 95% 50%;
+            animation: sharkTailSweep 1.35s ease-in-out infinite alternate;
+        }
+        .shark-tail-slow { animation-duration: 1.75s; }
+        .shark-tail-fast { animation-duration: 1.1s; }
+
+        @keyframes sharkTailSweep {
+            0%   { transform: rotate(-10deg) scaleX(0.95); }
+            100% { transform: rotate(10deg) scaleX(1.03); }
+        }
+
+        .shark-body-glide {
+            transform-box: fill-box;
+            transform-origin: 50% 50%;
+            animation: sharkBodyWave 2.7s ease-in-out infinite alternate;
+        }
+        @keyframes sharkBodyWave {
+            0%   { transform: translateY(-2px) rotate(-1.2deg); }
+            100% { transform: translateY(2px) rotate(1.2deg); }
+        }
+
         /* ==========================================================================
-           3. BARRA SUPERIOR F1 PIT-WALL (SIN BACKDROP-FILTER PESADO EN MÓVIL)
+           3. BARRA SUPERIOR F1 PIT-WALL (WSP · TIKTOK · INSTAGRAM + SFX)
            ========================================================================== */
         .pit-topbar {
             position: sticky;
@@ -113,12 +204,12 @@
             width: 100%;
             background: rgba(254, 254, 254, 0.96);
             border-bottom: 2px solid var(--sn-navy);
-            box-shadow: 0 4px 18px rgba(0, 1, 78, 0.07);
+            box-shadow: 0 4px 18px rgba(0, 1, 78, 0.08);
         }
 
         @media (min-width: 840px) {
             .pit-topbar {
-                background: rgba(254, 254, 254, 0.90);
+                background: rgba(254, 254, 254, 0.92);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
             }
@@ -127,18 +218,24 @@
         .pit-topbar-inner {
             max-width: 1080px;
             margin: 0 auto;
-            padding: 8px clamp(12px, 3vw, 24px);
+            padding: 8px clamp(10px, 2.8vw, 24px);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 6px;
         }
 
-        .pit-brand-mini { display: flex; align-items: center; gap: 8px; min-width: 0; }
+        .pit-contacts-nav {
+            display: flex;
+            align-items: center;
+            gap: clamp(5px, 1.5vw, 9px);
+            min-width: 0;
+            flex-wrap: nowrap;
+        }
 
         .pit-live-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background: var(--sn-cyan);
             box-shadow: 0 0 8px var(--sn-cyan);
@@ -151,35 +248,71 @@
             50%      { transform: scale(1.35); opacity: 0.65; }
         }
 
-        .pit-brand-code {
+        .pit-social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px clamp(7px, 1.8vw, 12px);
+            background: var(--sn-white);
+            border: 1.5px solid var(--sn-navy);
+            border-bottom: 3px solid var(--sn-navy);
+            border-radius: 2px 10px 2px 10px;
             font-family: var(--font-mono);
-            font-size: clamp(0.60rem, 2.2vw, 0.70rem);
+            font-size: clamp(0.56rem, 2.1vw, 0.64rem);
             font-weight: 800;
-            letter-spacing: 0.08em;
             color: var(--sn-navy);
             text-transform: uppercase;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            transition: transform 0.12s var(--spring-mech), background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
         }
 
-        .pit-controls-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .pit-social-pill svg {
+            width: clamp(12px, 3vw, 14px);
+            height: clamp(12px, 3vw, 14px);
+            flex-shrink: 0;
+        }
 
-        /* Botones estilo Aleta de Tiburón (esquinas asimétricas propias de Shark North) */
+        .pit-social-pill.is-wsp { border-bottom-color: #16A34A; }
+        .pit-social-pill.is-wsp svg { color: #16A34A; }
+
+        .pit-social-pill.is-tt { border-bottom-color: var(--sn-cyan); }
+        .pit-social-pill.is-tt svg { color: #00014E; }
+
+        .pit-social-pill.is-ig { border-bottom-color: #D62976; }
+        .pit-social-pill.is-ig svg { color: #D62976; }
+
+        @media (hover: hover) {
+            .pit-social-pill:hover {
+                background: var(--sn-navy);
+                color: var(--sn-white);
+                transform: translateY(-1px);
+            }
+            .pit-social-pill:hover svg { color: var(--sn-cyan); }
+        }
+
+        .pit-social-pill:active {
+            transform: translateY(2px);
+            border-bottom-width: 1.5px;
+        }
+
+        .pit-controls-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+        /* Botones estilo Aleta de Tiburón */
         .fin-pill-btn {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 5px 12px;
+            gap: 4px;
+            padding: 5px clamp(8px, 2vw, 12px);
             background: var(--sn-white);
             border: 1.5px solid var(--sn-navy);
             border-bottom: 3px solid var(--sn-navy);
             border-radius: 2px 12px 2px 12px;
             font-family: var(--font-mono);
-            font-size: 0.62rem;
+            font-size: clamp(0.56rem, 2.1vw, 0.62rem);
             font-weight: 800;
             color: var(--sn-navy);
             text-transform: uppercase;
+            white-space: nowrap;
             transition: transform 0.12s var(--spring-mech), background 0.18s ease, color 0.18s ease;
         }
 
@@ -244,7 +377,6 @@
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* CERO filter: blur() sobre <video> para garantizar 0 cuelgues GPU en Android */
         .hero-video-bg {
             position: absolute;
             inset: 0;
@@ -256,7 +388,6 @@
             z-index: 1;
         }
 
-        /* Velo optimizado: deja ver la espuma del video con claridad en el centro y asegura contraste */
         .hero-aero-scrim {
             position: absolute;
             inset: 0;
@@ -267,7 +398,6 @@
             pointer-events: none;
         }
 
-        /* Canvas WebGL GPU (Onda direccional Wave sin mix-blend-mode pesado) */
         #hydroWebGLCanvas {
             position: absolute;
             inset: 0;
@@ -290,7 +420,6 @@
             gap: 12px;
         }
 
-        /* LOGO CON MAYOR JERARQUÍA + BOX-SHADOW GPU (SIN FILTER DROP-SHADOW) */
         .shark-logo-spring {
             width: clamp(138px, 34vw, 186px);
             height: clamp(138px, 34vw, 186px);
@@ -380,7 +509,7 @@
         }
 
         /* ==========================================================================
-           6. BOTONES SHARK FIN / DRS HYDRAULIC (PROPIOS, DISTINTOS A BLACK CENTER)
+           6. BOTONES SHARK FIN / DRS HYDRAULIC
            ========================================================================== */
         .btn-shark-drs {
             display: inline-flex;
@@ -459,7 +588,7 @@
         .btn-shark-ghost:active { transform: translateY(2px); }
 
         /* ==========================================================================
-           7. SELECTOR MECÁNICO DE VEHÍCULO (BARRA CONTRASTADA NAVY / ICE)
+           7. SELECTOR MECÁNICO DE VEHÍCULO
            ========================================================================== */
         .vehicle-telemetry-bar {
             background: var(--sn-navy);
@@ -590,7 +719,9 @@
         }
 
         /* ==========================================================================
-           9. CATEGORÍAS CON CONTRASTE ALTERNADO (NAVY / WHITE / ICE / OCEAN)
+           9. CATEGORÍAS (STAGE 01 DORADO SATINADO + MODO DIAMANTE 4 AÑOS,
+              STAGE 02 REFLEJO ESPEJO + LIMPIEZA VERDE LEVE,
+              STAGE 03 MICROBIOS EN MOVIMIENTO, STAGE 04 OCEAN)
            ========================================================================== */
         .services-f1-grid {
             display: grid;
@@ -615,7 +746,12 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.18s var(--spring-mech), box-shadow 0.22s ease;
+            transition: transform 0.18s var(--spring-mech), box-shadow 0.28s ease, background 0.35s ease, border-color 0.35s ease;
+        }
+
+        .f1-service-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         /* Reflejo especular líquido al hover */
@@ -624,10 +760,11 @@
             position: absolute;
             top: 0; left: -130%;
             width: 55%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(254, 254, 254, 0.20), transparent);
+            background: linear-gradient(90deg, transparent, rgba(254, 254, 254, 0.24), transparent);
             transform: skewX(-22deg);
             transition: left 0.55s ease;
             pointer-events: none;
+            z-index: 3;
         }
 
         @media (hover: hover) {
@@ -637,25 +774,112 @@
 
         .f1-service-card:active { transform: translateY(2px); }
 
-        /* VARIANTE 1: AZUL ABISAL PROTAGONISTA (#00014E) */
-        .f1-service-card.theme-navy {
-            background: linear-gradient(145deg, #00014E 0%, #001B70 100%);
-            color: var(--sn-white);
-            border: 2px solid var(--sn-navy);
-            border-bottom: 5px solid var(--sn-cyan);
-            box-shadow: var(--shadow-navy);
+        /* STAGE 01: DORADO SATINADO PROTAGONISTA */
+        .f1-service-card.theme-gold {
+            background:
+                linear-gradient(145deg, #F5E8C8 0%, #DFC484 52%, #C9A657 100%);
+            color: #211806;
+            border: 2px solid #8A6A23;
+            border-left: 6px solid #6E5216;
+            border-bottom: 5px solid #5D4410;
+            box-shadow: 0 18px 38px -10px rgba(138, 106, 35, 0.32), inset 0 1px 0 rgba(255, 252, 240, 0.72);
         }
-        .theme-navy .card-stage-id { color: var(--sn-cyan); }
-        .theme-navy .card-title-f1 { color: var(--sn-white); }
-        .theme-navy .spec-chip {
-            background: rgba(254, 254, 254, 0.10);
-            border-color: rgba(0, 181, 254, 0.35);
-            color: #FEFEFE;
+        /* Cepillado satinado sutil */
+        .f1-service-card.theme-gold::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 2px, transparent 2px, transparent 7px);
+            pointer-events: none;
+            z-index: 1;
         }
-        .theme-navy .card-foot-action { border-top-color: rgba(254, 254, 254, 0.22); color: var(--sn-cyan); }
-        .theme-navy .card-foot-arrow { background: var(--sn-cyan); color: var(--sn-navy); }
+        .theme-gold .card-stage-id { color: #5E430B; }
+        .theme-gold .card-tag-chip {
+            background: #2C2109;
+            color: #F4DEAA;
+            border: 1px solid #8A6A23;
+        }
+        .theme-gold .card-title-f1 { color: #1B1405; }
+        .theme-gold .spec-chip {
+            background: rgba(255, 252, 244, 0.76);
+            border-color: rgba(110, 82, 22, 0.32);
+            color: #211806;
+        }
+        .theme-gold .card-foot-action {
+            border-top-color: rgba(93, 68, 16, 0.28);
+            color: #493407;
+        }
+        .theme-gold .card-foot-arrow {
+            background: #2C2109;
+            color: #F4DEAA;
+        }
 
-        /* VARIANTE 2: BLANCO PURO (#FEFEFE) */
+        .theme-gold .yr-btn {
+            background: rgba(255, 251, 240, 0.56);
+            border: 1.5px solid rgba(110, 82, 22, 0.45);
+            border-bottom: 3px solid #755718;
+            color: #241A06;
+        }
+        .theme-gold .yr-btn.active {
+            background: #2C2109;
+            color: #F6E2AE;
+            border-color: #1B1405;
+            border-bottom-color: #000000;
+            box-shadow: 0 4px 12px rgba(44, 33, 9, 0.28);
+        }
+
+        /* STAGE 01 ESTADO DIAMANTE AL PULSAR "4 AÑOS" */
+        .f1-service-card.theme-gold.diamond-mode {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(212, 242, 255, 0.78) 28%, rgba(255, 255, 255, 0.94) 52%, rgba(182, 232, 255, 0.80) 76%, rgba(246, 252, 255, 0.96) 100%),
+                repeating-linear-gradient(60deg, rgba(0, 181, 254, 0.12) 0px, rgba(0, 181, 254, 0.12) 16px, rgba(255, 255, 255, 0.42) 16px, rgba(255, 255, 255, 0.42) 32px),
+                repeating-linear-gradient(-60deg, rgba(0, 110, 161, 0.08) 0px, rgba(0, 110, 161, 0.08) 16px, rgba(255, 255, 255, 0.30) 16px, rgba(255, 255, 255, 0.30) 32px);
+            color: #001B47;
+            border-color: #00B5FE;
+            border-left-color: #006EA1;
+            border-bottom-color: #00B5FE;
+            box-shadow: 0 20px 48px -8px rgba(0, 181, 254, 0.42), inset 0 0 26px rgba(255, 255, 255, 0.92);
+        }
+        .theme-gold.diamond-mode::after {
+            background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.85) 48%, rgba(0, 181, 254, 0.25) 54%, transparent 68%);
+            transform: translateX(-140%);
+            animation: ceramicSheen 3.4s infinite ease-in-out;
+        }
+        .theme-gold.diamond-mode .card-stage-id { color: #006EA1; }
+        .theme-gold.diamond-mode .card-tag-chip {
+            background: linear-gradient(135deg, #00014E 0%, #006EA1 100%);
+            color: #E3F7FF;
+            border-color: #00B5FE;
+        }
+        .theme-gold.diamond-mode .card-title-f1 { color: #00014E; }
+        .theme-gold.diamond-mode .spec-chip {
+            background: rgba(255, 255, 255, 0.86);
+            border-color: rgba(0, 181, 254, 0.42);
+            color: #00014E;
+        }
+        .theme-gold.diamond-mode .card-foot-action {
+            border-top-color: rgba(0, 110, 161, 0.28);
+            color: #005885;
+        }
+        .theme-gold.diamond-mode .card-foot-arrow {
+            background: #00014E;
+            color: #7CE2FF;
+        }
+        .theme-gold.diamond-mode .yr-btn {
+            background: rgba(255, 255, 255, 0.72);
+            border-color: rgba(0, 110, 161, 0.35);
+            border-bottom-color: #006EA1;
+            color: #00014E;
+        }
+        .theme-gold.diamond-mode .yr-btn.active {
+            background: linear-gradient(135deg, #FFFFFF 0%, #B7EDFF 48%, #FFFFFF 100%);
+            color: #00014E;
+            border-color: #00B5FE;
+            border-bottom-color: #006EA1;
+            box-shadow: 0 0 14px rgba(0, 181, 254, 0.55), inset 0 1px 4px #FFFFFF;
+        }
+
+        /* STAGE 02: BLANCO PURO CON REFLEJO TIPO LOGO EN PULIDO + CHIP LIMPIEZA VERDE LEVE */
         .f1-service-card.theme-white {
             background: var(--sn-white);
             color: var(--sn-navy);
@@ -665,7 +889,26 @@
             box-shadow: var(--shadow-card);
         }
 
-        /* VARIANTE 3: HIELO CERÁMICO (#EDF5FC) */
+        /* Reflejo especular automático idéntico al del logo en Stage 02 (Pulidos) */
+        .f1-service-card.polish-sheen::after {
+            content: '';
+            position: absolute;
+            inset: -25%;
+            background: linear-gradient(115deg, transparent 36%, rgba(254, 254, 254, 0.85) 50%, rgba(0, 181, 254, 0.22) 56%, transparent 70%);
+            transform: translateX(-150%);
+            animation: ceramicSheen 4.6s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Chip exclusivo de "Limpieza detallada profesional" en verde leve legible */
+        .spec-chip.spec-clean-green {
+            background: #E4F7EC;
+            border-color: rgba(21, 128, 70, 0.38);
+            color: #0B4F2B;
+        }
+
+        /* STAGE 03: HIELO CERÁMICO CON MICROBIOS ANIMADOS */
         .f1-service-card.theme-ice {
             background: linear-gradient(155deg, #EDF5FC 0%, #DDEBF8 100%);
             color: var(--sn-navy);
@@ -676,7 +919,51 @@
         }
         .theme-ice .spec-chip { background: #FEFEFE; border-color: rgba(0, 110, 161, 0.25); }
 
-        /* VARIANTE 4: AZUL TIBURÓN OCEÁNICO (#006EA1) */
+        /* Campo animado de microbios/bichitos dentro de Stage 03 y Desinfección */
+        .microbes-field {
+            position: absolute !important;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1 !important;
+        }
+
+        .microbe-bug {
+            position: absolute;
+            color: rgba(0, 110, 161, 0.22);
+            will-change: transform;
+        }
+
+        .microbe-1 { top: 14%; left: 10%; width: 22px; height: 22px; animation: microbeDriftA 9s ease-in-out infinite alternate; }
+        .microbe-2 { top: 58%; left: 74%; width: 24px; height: 24px; color: rgba(0, 1, 78, 0.16); animation: microbeDriftB 11s ease-in-out infinite alternate; }
+        .microbe-3 { top: 28%; left: 82%; width: 18px; height: 18px; color: rgba(0, 181, 254, 0.28); animation: microbeDriftC 8.5s ease-in-out infinite alternate; }
+        .microbe-4 { top: 72%; left: 22%; width: 20px; height: 20px; color: rgba(0, 110, 161, 0.19); animation: microbeDriftD 10.5s ease-in-out infinite alternate; }
+        .microbe-5 { top: 44%; left: 46%; width: 16px; height: 16px; color: rgba(0, 1, 78, 0.15); animation: microbeDriftE 7.5s ease-in-out infinite alternate; }
+
+        @keyframes microbeDriftA {
+            0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+            50%  { transform: translate3d(26px, 14px, 0) rotate(65deg); }
+            100% { transform: translate3d(-10px, 24px, 0) rotate(130deg); }
+        }
+        @keyframes microbeDriftB {
+            0%   { transform: translate3d(0, 0, 0) rotate(20deg); }
+            50%  { transform: translate3d(-28px, -16px, 0) rotate(-40deg); }
+            100% { transform: translate3d(-12px, -28px, 0) rotate(-110deg); }
+        }
+        @keyframes microbeDriftC {
+            0%   { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate3d(-34px, 22px, 0) scale(1.12) rotate(160deg); }
+        }
+        @keyframes microbeDriftD {
+            0%   { transform: translate3d(0, 0, 0) rotate(-15deg); }
+            100% { transform: translate3d(38px, -22px, 0) rotate(95deg); }
+        }
+        @keyframes microbeDriftE {
+            0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+            100% { transform: translate3d(-22px, -18px, 0) rotate(-120deg); }
+        }
+
+        /* STAGE 04: AZUL TIBURÓN OCEÁNICO (#006EA1) */
         .f1-service-card.theme-ocean {
             background: linear-gradient(145deg, #006EA1 0%, #004A73 100%);
             color: var(--sn-white);
@@ -751,25 +1038,15 @@
 
         .yr-btn {
             padding: 7px 4px;
-            background: rgba(254, 254, 254, 0.10);
-            border: 1.5px solid rgba(254, 254, 254, 0.35);
-            border-bottom: 3px solid rgba(254, 254, 254, 0.45);
             border-radius: 2px 8px 2px 8px;
             font-family: var(--font-mono);
             font-size: 0.64rem;
             font-weight: 800;
-            color: #FEFEFE;
             text-align: center;
-            transition: all 0.14s var(--spring-mech);
+            transition: all 0.16s var(--spring-mech);
         }
 
         .yr-btn:active { transform: translateY(1.5px); }
-        .yr-btn.active {
-            background: var(--sn-cyan);
-            color: var(--sn-navy);
-            border-color: #FEFEFE;
-            border-bottom-color: var(--sn-ocean);
-        }
 
         .card-foot-action {
             display: flex;
@@ -802,7 +1079,7 @@
         }
 
         /* ==========================================================================
-           10. BANDA TELEMETRÍA DIVISORIA (MANTIENE EL DINAMISMO AL SCROLLEAR)
+           10. BANDA TELEMETRÍA DIVISORIA
            ========================================================================== */
         .telemetry-ticker-band {
             width: 100%;
@@ -839,7 +1116,7 @@
         }
 
         /* ==========================================================================
-           11. GALERÍA DE VEHÍCULOS (4 UNIDADES)
+           11. GALERÍA DE VEHÍCULOS (4 VIDEOS MP4 EN BOOMERANG ULTRA RÁPIDOS)
            ========================================================================== */
         .fleet-gallery-grid {
             display: grid;
@@ -882,27 +1159,28 @@
         .fleet-img-wrap {
             width: 100%;
             aspect-ratio: 4 / 3;
-            background: #DCE8F5;
+            background: #001036;
             overflow: hidden;
             position: relative;
         }
 
-        .fleet-img-wrap img {
+        .fleet-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.55s var(--ease-cine);
+            transition: transform 0.55s var(--ease-cine), opacity 0.22s ease;
         }
 
         @media (hover: hover) {
-            .fleet-card:hover .fleet-img-wrap img { transform: scale(1.06); }
+            .fleet-card:hover .fleet-video { transform: scale(1.05); }
         }
 
         .fleet-badge-float {
             position: absolute;
             top: 8px;
             left: 8px;
+            z-index: 2;
             background: rgba(0, 1, 78, 0.90);
             color: var(--sn-cyan);
             font-family: var(--font-mono);
@@ -912,6 +1190,22 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             border-radius: 2px 6px 2px 6px;
+        }
+
+        .fleet-boom-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 2;
+            background: rgba(0, 1, 78, 0.78);
+            color: #FEFEFE;
+            font-family: var(--font-mono);
+            font-size: 0.52rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border: 1px solid rgba(0, 181, 254, 0.55);
+            border-radius: 2px 6px 2px 6px;
+            letter-spacing: 0.06em;
         }
 
         .fleet-meta { padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
@@ -1000,7 +1294,7 @@
         }
 
         /* ==========================================================================
-           13. MODAL DE SERVICIOS AWWWARDS (STAGGER + TELEMETRY BARS + KINETIC TEXT)
+           13. MODAL DE SERVICIOS AWWWARDS (STAGGER + TELEMETRY BARS + ESTILOS)
            ========================================================================== */
         .modal-backdrop {
             position: fixed;
@@ -1080,7 +1374,6 @@
         }
         .btn-modal-x:hover { background: var(--sn-cyan); }
 
-        /* Mini selector rápido de vehículo dentro del modal */
         .modal-veh-bar {
             display: flex;
             align-items: center;
@@ -1126,6 +1419,8 @@
         }
 
         .modal-spec-item {
+            position: relative;
+            overflow: hidden;
             background: var(--sn-ice);
             border: 1.5px solid var(--hairline);
             border-left: 5px solid var(--sn-ocean);
@@ -1138,6 +1433,42 @@
             animation: itemStaggerIn 0.45s var(--ease-cine) forwards;
         }
 
+        .modal-spec-item > *:not(.microbes-field) {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Estilo verde leve legible para Limpieza Detallada Profesional dentro del modal */
+        .modal-spec-item.spec-clean-green {
+            background: #E9F8EF;
+            border-color: rgba(21, 128, 70, 0.25);
+            border-left-color: #169C58;
+        }
+        .modal-spec-item.spec-clean-green h4 { color: #0B4D2A; }
+        .modal-spec-item.spec-clean-green p { color: #19452D; }
+        .modal-spec-item.spec-clean-green .metric-fill {
+            background: linear-gradient(90deg, #15803D, #22C55E);
+        }
+
+        /* Estilo reflejo tipo logo para Pulidos dentro del modal */
+        .modal-spec-item.spec-polish-sheen::after {
+            content: '';
+            position: absolute;
+            inset: -25%;
+            background: linear-gradient(115deg, transparent 36%, rgba(254, 254, 254, 0.85) 50%, rgba(0, 181, 254, 0.24) 56%, transparent 70%);
+            transform: translateX(-150%);
+            animation: ceramicSheen 4.4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Estilo diamante en modal si está seleccionado 4 Años */
+        .modal-spec-item.spec-diamond {
+            background: linear-gradient(135deg, #FFFFFF 0%, #DEF4FF 50%, #FFFFFF 100%);
+            border-color: rgba(0, 181, 254, 0.45);
+            border-left-color: #00B5FE;
+        }
+
         .modal-spec-item h4 {
             font-family: var(--font-display);
             font-size: 1.04rem;
@@ -1148,7 +1479,6 @@
 
         .modal-spec-item p { font-size: 0.88rem; font-weight: 600; color: #263142; line-height: 1.4; }
 
-        /* Barras de Telemetría Animadas dentro del modal */
         .spec-metrics-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1198,7 +1528,7 @@
         .btn-spec-wpp:active { transform: translateY(2px); }
 
         /* ==========================================================================
-           14. LIGHTBOX CINEMATOGRÁFICO FULL-VIEWPORT (CERO POWERPOINT)
+           14. LIGHTBOX CINEMATOGRÁFICO FULL-VIEWPORT (SOPORTE VIDEO MP4)
            ========================================================================== */
         .cine-lightbox-backdrop {
             position: fixed;
@@ -1255,6 +1585,7 @@
             width: auto;
             height: auto;
             object-fit: contain;
+            background: #00081F;
             border-radius: 4px 20px 4px 20px;
             box-shadow: 0 32px 80px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(0, 181, 254, 0.35);
             will-change: transform, opacity, clip-path;
@@ -1349,26 +1680,91 @@
 </head>
 <body>
 
-    <!-- FONDO BLANCO ÚNICO CON PATRÓN AERODINÁMICO F1 -->
+    <!-- FONDO SUBMARINO LUMINOSO CON SILUETAS DE TIBURONES EN SVG FLUIDOS -->
     <div class="f1-aero-bg" aria-hidden="true">
+        <div class="ocean-sun-rays"></div>
         <div class="f1-aero-pattern" id="aeroPatternLayer"></div>
+
+        <svg class="shark-loop-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <!-- Silueta anatómica articulada de tiburón (Cuerpo + Cola móvil) -->
+                <g id="sharkUnit">
+                    <g class="shark-body-glide">
+                        <!-- Aleta dorsal + cuerpo hidrodinámico + aleta pectoral -->
+                        <path d="M98,0 C74,-12 44,-14 14,-8 L-8,-36 C-12,-24 -12,-14 -16,-7 C-34,-5 -52,-3 -66,-2 L-66,5 C-44,9 -24,11 -6,11 L-18,32 C-6,25 4,17 12,12 C44,14 76,10 98,0 Z"/>
+                        <!-- Aleta ventral secundaria sutil -->
+                        <path d="M-36,6 L-44,17 C-38,14 -32,10 -28,7 Z" opacity="0.8"/>
+                        <!-- Cola caudal articulada -->
+                        <g class="shark-tail-fin">
+                            <path d="M-64,-2 C-76,-4 -86,-10 -106,-27 C-98,-12 -94,-4 -92,0 C-95,6 -98,13 -103,23 C-85,11 -75,6 -64,5 Z"/>
+                        </g>
+                    </g>
+                </g>
+
+                <!-- Versión con cola más rápida para tiburones medianos/chicos -->
+                <g id="sharkUnitFast">
+                    <g class="shark-body-glide">
+                        <path d="M98,0 C74,-12 44,-14 14,-8 L-8,-36 C-12,-24 -12,-14 -16,-7 C-34,-5 -52,-3 -66,-2 L-66,5 C-44,9 -24,11 -6,11 L-18,32 C-6,25 4,17 12,12 C44,14 76,10 98,0 Z"/>
+                        <g class="shark-tail-fin shark-tail-fast">
+                            <path d="M-64,-2 C-76,-4 -86,-10 -106,-27 C-98,-12 -94,-4 -92,0 C-95,6 -98,13 -103,23 C-85,11 -75,6 -64,5 Z"/>
+                        </g>
+                    </g>
+                </g>
+            </defs>
+
+            <!-- Tiburones en distintas profundidades, direcciones y opacidades suaves -->
+            <g class="shark-lane shark-lane-ltr-1" fill="#006EA1" opacity="0.11">
+                <use href="#sharkUnit" transform="scale(0.88)"/>
+            </g>
+
+            <g class="shark-lane shark-lane-rtl-1" fill="#00014E" opacity="0.095">
+                <use href="#sharkUnit" transform="scale(1.12)"/>
+            </g>
+
+            <g class="shark-lane shark-lane-ltr-2" fill="#004D7A" opacity="0.105">
+                <use href="#sharkUnitFast" transform="scale(0.72)"/>
+            </g>
+
+            <g class="shark-lane shark-lane-rtl-2" fill="#006EA1" opacity="0.115">
+                <use href="#sharkUnit" transform="scale(0.95)"/>
+            </g>
+
+            <g class="shark-lane shark-lane-ltr-3" fill="#00014E" opacity="0.09">
+                <use href="#sharkUnitFast" transform="scale(1.06)"/>
+            </g>
+
+            <g class="shark-lane shark-lane-rtl-3" fill="#006EA1" opacity="0.10">
+                <use href="#sharkUnitFast" transform="scale(0.66)"/>
+            </g>
+        </svg>
     </div>
 
-    <!-- BARRA DE TELEMETRÍA SUPERIOR -->
+    <!-- BARRA DE TELEMETRÍA SUPERIOR CON CONTACTOS (WSP, TIKTOK, INSTAGRAM) + SFX -->
     <header class="pit-topbar">
         <div class="pit-topbar-inner">
-            <div class="pit-brand-mini">
-                <span class="pit-live-dot"></span>
-                <span class="pit-brand-code">SHARK NORTH</span>
-            </div>
+            <nav class="pit-contacts-nav" aria-label="Redes y contacto directo">
+                <span class="pit-live-dot" aria-hidden="true"></span>
+
+                <a id="topWppBtn" href="https://wa.me/5491151547411?text=%C2%A1Hola%20Mike%20de%20Shark%20North!%20Quisiera%20consultar%20por%20un%20servicio%20de%20detailing%20a%20domicilio." target="_blank" rel="noopener noreferrer" class="pit-social-pill is-wsp" onclick="playMechClick(700)">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.78 14.12c-.24.68-1.41 1.3-1.95 1.38-.5.07-1.14.1-1.84-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07s.76-2.18 1.03-2.48c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.84 2.05.91 2.2.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.18-.31.4-.44.54-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.36 1.46.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.08.13.08.74-.16 1.42z"/></svg>
+                    <span>WSP</span>
+                </a>
+
+                <a href="https://www.tiktok.com/@sharknorth" target="_blank" rel="noopener noreferrer" class="pit-social-pill is-tt" onclick="playMechClick(720)">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+                    <span>TikTok</span>
+                </a>
+
+                <a href="https://www.instagram.com/sharknorth/" target="_blank" rel="noopener noreferrer" class="pit-social-pill is-ig" onclick="playMechClick(740)">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                    <span>Instagram</span>
+                </a>
+            </nav>
 
             <div class="pit-controls-right">
                 <button type="button" class="fin-pill-btn active-cyan" id="sfxToggleBtn" onclick="toggleSfx()" aria-label="Sonido mecánico">
                     🔊 SFX
                 </button>
-                <a href="https://www.instagram.com/sharknorth/" target="_blank" rel="noopener noreferrer" class="fin-pill-btn" onclick="playMechClick()">
-                    IG ↗
-                </a>
             </div>
         </div>
     </header>
@@ -1376,7 +1772,7 @@
     <!-- CONTENEDOR MAESTRO -->
     <main class="f1-shell">
 
-        <!-- 1. HERO AERODINÁMICO: VIDEO NITIDEZ CALIBRADA + SHADER WAVE + LOGO GRANDE -->
+        <!-- 1. HERO AERODINÁMICO -->
         <section class="hero-aero-stage" id="heroStage">
             <video id="heroBgVideo" class="hero-video-bg" autoplay loop muted playsinline webkit-playsinline preload="auto">
                 <source src="./portadavideodifuminado.mp4" type="video/mp4">
@@ -1416,7 +1812,7 @@
             </div>
         </section>
 
-        <!-- 2. SELECTOR MECÁNICO CONTRASTADO DE VEHÍCULO -->
+        <!-- 2. SELECTOR MECÁNICO DE VEHÍCULO -->
         <section class="vehicle-telemetry-bar reveal-fx" aria-label="Tipo de vehículo">
             <div>
                 <span class="vt-kicker">01 // Configurador Rápido</span>
@@ -1430,7 +1826,7 @@
             </div>
         </section>
 
-        <!-- 3. CATEGORÍAS DE SERVICIOS CON CONTRASTE CROMÁTICO ALTERNADO -->
+        <!-- 3. CATEGORÍAS DE SERVICIOS -->
         <section id="categorias" class="lazy-section" style="display:flex; flex-direction:column; gap:14px;">
             <div class="section-head-f1 reveal-fx">
                 <div>
@@ -1442,12 +1838,12 @@
 
             <div class="services-f1-grid">
 
-                <!-- STAGE 01: AZUL ABISAL PROTAGONISTA (#00014E) -->
-                <article class="f1-service-card theme-navy reveal-fx" onclick="openServiceModal('ceramicos')">
+                <!-- STAGE 01: DORADO SATINADO -> CAMBIA A DIAMANTE CON "4 AÑOS" -->
+                <article class="f1-service-card theme-gold reveal-fx" id="ceramicStageCard" onclick="openServiceModal('ceramicos')">
                     <div>
                         <div class="card-top-row">
                             <span class="card-stage-id">Stage 01 // Blindaje Líquido</span>
-                            <span class="card-tag-chip">Top Demanda</span>
+                            <span class="card-tag-chip" id="ceramicBadgeChip">Top Demanda</span>
                         </div>
                         <h3 class="card-title-f1">Sellados Cerámicos</h3>
                         <div class="card-list-pills">
@@ -1460,7 +1856,7 @@
                             <button type="button" class="yr-btn active" data-yr="1 Año" onclick="selectCeramicYear('1 Año', this)">1 Año</button>
                             <button type="button" class="yr-btn" data-yr="2 Años" onclick="selectCeramicYear('2 Años', this)">2 Años</button>
                             <button type="button" class="yr-btn" data-yr="3 Años" onclick="selectCeramicYear('3 Años', this)">3 Años</button>
-                            <button type="button" class="yr-btn" data-yr="4 Años" onclick="selectCeramicYear('4 Años', this)">4 Años</button>
+                            <button type="button" class="yr-btn" data-yr="4 Años" onclick="selectCeramicYear('4 Años', this)">💎 4 Años</button>
                         </div>
                     </div>
 
@@ -1470,8 +1866,8 @@
                     </div>
                 </article>
 
-                <!-- STAGE 02: BLANCO PURO (#FEFEFE) -->
-                <article class="f1-service-card theme-white reveal-fx" onclick="openServiceModal('exterior')">
+                <!-- STAGE 02: BLANCO PURO + REFLEJO ESPEJO TIPO LOGO EN PULIDO + LIMPIEZA VERDE LEVE -->
+                <article class="f1-service-card theme-white polish-sheen reveal-fx" onclick="openServiceModal('exterior')">
                     <div>
                         <div class="card-top-row">
                             <span class="card-stage-id">Stage 02 // Corrección &amp; Lavado</span>
@@ -1479,7 +1875,7 @@
                         </div>
                         <h3 class="card-title-f1">Detallados Exteriores &amp; Pulidos</h3>
                         <div class="card-list-pills">
-                            <span class="spec-chip">Limpieza detallada profesional</span>
+                            <span class="spec-chip spec-clean-green">Limpieza detallada profesional</span>
                             <span class="spec-chip">Detallados exteriores</span>
                             <span class="spec-chip">Pulidos</span>
                         </div>
@@ -1491,8 +1887,38 @@
                     </div>
                 </article>
 
-                <!-- STAGE 03: HIELO CERÁMICO (#EDF5FC) -->
+                <!-- STAGE 03: HIELO CERÁMICO + MICROBIOS / BICHITOS EN MOVIMIENTO -->
                 <article class="f1-service-card theme-ice reveal-fx" onclick="openServiceModal('interior')">
+                    <div class="microbes-field" aria-hidden="true">
+                        <!-- Microbio 1 (bacteriano flagelado) -->
+                        <svg class="microbe-bug microbe-1" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                            <ellipse cx="16" cy="16" rx="7" ry="4.5" fill="currentColor" fill-opacity="0.16"/>
+                            <path d="M9 16 C6 13, 4 19, 2 15 M16 11.5 V9 M13 12 L11 9.5 M19 12 L21 9.5 M16 20.5 V23 M13 20 L11 22.5 M19 20 L21 22.5"/>
+                        </svg>
+                        <!-- Microbio 2 (espora circular con cilios) -->
+                        <svg class="microbe-bug microbe-2" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                            <circle cx="16" cy="16" r="5.5" fill="currentColor" fill-opacity="0.16"/>
+                            <circle cx="14.5" cy="15" r="1" fill="currentColor"/>
+                            <circle cx="18" cy="17" r="0.8" fill="currentColor"/>
+                            <path d="M16 7 V10 M16 22 V25 M7 16 H10 M22 16 H25 M9.6 9.6 L11.8 11.8 M20.2 20.2 L22.4 22.4 M22.4 9.6 L20.2 11.8 M11.8 20.2 L9.6 22.4"/>
+                        </svg>
+                        <!-- Microbio 3 (pequeño bacilo) -->
+                        <svg class="microbe-bug microbe-3" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                            <rect x="10" y="12" width="12" height="8" rx="4" fill="currentColor" fill-opacity="0.18"/>
+                            <path d="M10 16 C7 14, 5 18, 3 16 M22 14 L25 12 M22 18 L25 20"/>
+                        </svg>
+                        <!-- Microbio 4 (ameboide suave) -->
+                        <svg class="microbe-bug microbe-4" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M16 9 C20 9, 23 12, 22 16 C23 20, 19 23, 15 22 C11 23, 8 19, 10 15 C9 11, 12 9, 16 9 Z" fill="currentColor" fill-opacity="0.15"/>
+                            <circle cx="15" cy="15.5" r="2" fill="currentColor" fill-opacity="0.35"/>
+                        </svg>
+                        <!-- Microbio 5 (célula minimalista) -->
+                        <svg class="microbe-bug microbe-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="4.5" fill="currentColor" fill-opacity="0.18"/>
+                            <path d="M12 4.5 V7 M12 17 V19.5 M4.5 12 H7 M17 12 H19.5"/>
+                        </svg>
+                    </div>
+
                     <div>
                         <div class="card-top-row">
                             <span class="card-stage-id">Stage 03 // Cockpit &amp; Tapizados</span>
@@ -1512,7 +1938,7 @@
                     </div>
                 </article>
 
-                <!-- STAGE 04: AZUL TIBURÓN OCEÁNICO (#006EA1) -->
+                <!-- STAGE 04: AZUL TIBURÓN OCEÁNICO -->
                 <article class="f1-service-card theme-ocean reveal-fx" onclick="openServiceModal('ceras')">
                     <div>
                         <div class="card-top-row">
@@ -1544,7 +1970,7 @@
             </div>
         </div>
 
-        <!-- 4. GALERÍA DE VEHÍCULOS -->
+        <!-- 4. GALERÍA DE VEHÍCULOS (4 VIDEOS MP4 EN BOOMERANG ULTRA RÁPIDO) -->
         <section id="vehiculos" class="lazy-section" style="display:flex; flex-direction:column; gap:14px;">
             <div class="section-head-f1 reveal-fx">
                 <div>
@@ -1558,12 +1984,19 @@
                 <article class="fleet-card reveal-fx" onclick="openLightbox(0)">
                     <div class="fleet-img-wrap">
                         <span class="fleet-badge-float">Gloss Mirror</span>
-                        <img
-                            src="./20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp"
-                            alt="Detailing de precisión en deportivo"
-                            loading="lazy" decoding="async"
-                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp';}"
+                        <span class="fleet-boom-dot">⟲ HD</span>
+                        <video
+                            class="fleet-video boomerang-video"
+                            muted
+                            playsinline
+                            webkit-playsinline
+                            preload="metadata"
+                            poster="./20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp"
+                            data-file="tratamientoceramico.mp4"
                         >
+                            <source src="./tratamientoceramico.mp4" type="video/mp4">
+                            <source src="https://raw.githubusercontent.com/linkuniversal/sharknorth/main/tratamientoceramico.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="fleet-meta">
                         <h3 class="fleet-title">Tratamiento Cerámico</h3>
@@ -1574,12 +2007,19 @@
                 <article class="fleet-card reveal-fx" onclick="openLightbox(1)">
                     <div class="fleet-img-wrap">
                         <span class="fleet-badge-float">Rear Trim</span>
-                        <img
-                            src="./black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp"
-                            alt="Detallado posterior y escapes en deportivo negro"
-                            loading="lazy" decoding="async"
-                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp';}"
+                        <span class="fleet-boom-dot">⟲ HD</span>
+                        <video
+                            class="fleet-video boomerang-video"
+                            muted
+                            playsinline
+                            webkit-playsinline
+                            preload="metadata"
+                            poster="./black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp"
+                            data-file="cromos.mp4"
                         >
+                            <source src="./cromos.mp4" type="video/mp4">
+                            <source src="https://raw.githubusercontent.com/linkuniversal/sharknorth/main/cromos.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="fleet-meta">
                         <h3 class="fleet-title">Pulido &amp; Cromos</h3>
@@ -1590,12 +2030,19 @@
                 <article class="fleet-card reveal-fx" onclick="openLightbox(2)">
                     <div class="fleet-img-wrap">
                         <span class="fleet-badge-float">Front Aero</span>
-                        <img
-                            src="./front-view-black-sedan-sport-car-bridge.webp"
-                            alt="Sedán deportivo negro con protección cerámica"
-                            loading="lazy" decoding="async"
-                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/front-view-black-sedan-sport-car-bridge.webp';}"
+                        <span class="fleet-boom-dot">⟲ HD</span>
+                        <video
+                            class="fleet-video boomerang-video"
+                            muted
+                            playsinline
+                            webkit-playsinline
+                            preload="metadata"
+                            poster="./front-view-black-sedan-sport-car-bridge.webp"
+                            data-file="ceramicointegral.mp4"
                         >
+                            <source src="./ceramicointegral.mp4" type="video/mp4">
+                            <source src="https://raw.githubusercontent.com/linkuniversal/sharknorth/main/ceramicointegral.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="fleet-meta">
                         <h3 class="fleet-title">Sellado Integral</h3>
@@ -1606,12 +2053,19 @@
                 <article class="fleet-card reveal-fx" onclick="openLightbox(3)">
                     <div class="fleet-img-wrap">
                         <span class="fleet-badge-float">Metallic Wax</span>
-                        <img
-                            src="./metallic-color-mini-coupe-driving-accross-forest.webp"
-                            alt="Coupé metálica con cera cerámica y carnauba"
-                            loading="lazy" decoding="async"
-                            onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/sharknorth/main/metallic-color-mini-coupe-driving-accross-forest.webp';}"
+                        <span class="fleet-boom-dot">⟲ HD</span>
+                        <video
+                            class="fleet-video boomerang-video"
+                            muted
+                            playsinline
+                            webkit-playsinline
+                            preload="metadata"
+                            poster="./metallic-color-mini-coupe-driving-accross-forest.webp"
+                            data-file="cerasyproteccion.mp4"
                         >
+                            <source src="./cerasyproteccion.mp4" type="video/mp4">
+                            <source src="https://raw.githubusercontent.com/linkuniversal/sharknorth/main/cerasyproteccion.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="fleet-meta">
                         <h3 class="fleet-title">Ceras &amp; Protección</h3>
@@ -1672,7 +2126,7 @@
     </div>
 
     <!-- ==========================================================================
-         LIGHTBOX CINEMATOGRÁFICO FULL-VIEWPORT (FONDO OSCURO DIFUMINADO + MASK WIPE)
+         LIGHTBOX CINEMATOGRÁFICO FULL-VIEWPORT (VIDEOS MP4 EN BOOMERANG)
          ========================================================================== -->
     <div class="cine-lightbox-backdrop" id="lightboxModal" onclick="closeLightbox(event)" role="dialog" aria-modal="true">
         <div class="cine-lb-top" onclick="event.stopPropagation()">
@@ -1682,7 +2136,7 @@
 
         <div class="cine-lb-stage" id="lbSwipeArea" onclick="event.stopPropagation()">
             <button type="button" class="cine-nav-btn cine-prev" onclick="navLightbox(-1)" aria-label="Anterior">‹</button>
-            <img id="lbImg" class="cine-lb-img" src="" alt="Vehículo Shark North">
+            <video id="lbVideo" class="cine-lb-img" autoplay muted playsinline webkit-playsinline controls></video>
             <button type="button" class="cine-nav-btn cine-next" onclick="navLightbox(1)" aria-label="Siguiente">›</button>
         </div>
 
@@ -1693,7 +2147,7 @@
     </div>
 
     <!-- ==========================================================================
-         MOTORES: WASM + WEBGL WAVE SHADER (0.35x ULTRA LIVIANO) + RESORTE + WORKER
+         MOTORES: WASM + WEBGL WAVE SHADER + RESORTE + BOOMERANG + WORKER
          ========================================================================== -->
     <script>
         const WPP_NUMBER = "5491151547411";
@@ -1760,7 +2214,7 @@
         }
 
         // =========================================================
-        // 3. SHADER WEBGL DE ONDA AERODINÁMICA (WAVE) A 0.35x RESOLUCIÓN (0 CRASHES EN MÓVIL)
+        // 3. SHADER WEBGL DE ONDA AERODINÁMICA (WAVE) A 0.35x RESOLUCIÓN
         // =========================================================
         const WaveShaderEngine = (() => {
             const canvas = document.getElementById('hydroWebGLCanvas');
@@ -1806,7 +2260,6 @@
                     vec2 uv = gl_FragCoord.xy / uRes;
                     vec2 p = uv * vec2(uRes.x / max(1.0, uRes.y), 1.0);
 
-                    // Onda direccional aerodinámica (Wave) + influencia suave del cursor/dedo
                     float dy = uv.y - uPtr.y;
                     float band = exp(-dy * dy * 14.0) * uPtrActive;
                     float sweep = sin(p.x * 5.2 - uTime * 2.3 + (uv.x - uPtr.x) * 4.0 * band);
@@ -1815,8 +2268,8 @@
                     float waveCrest = smoothstep(0.58, 0.88, waveField + band * (0.28 + 0.22 * sweep));
                     float sheen = smoothstep(0.76, 0.96, waveField + band * 0.35);
 
-                    vec3 cyan = vec3(0.0, 0.71, 0.996);   // #00B5FE
-                    vec3 white = vec3(0.996, 0.996, 0.996); // #FEFEFE
+                    vec3 cyan = vec3(0.0, 0.71, 0.996);
+                    vec3 white = vec3(0.996, 0.996, 0.996);
                     vec3 col = mix(cyan, white, sheen);
 
                     float edge = smoothstep(0.0, 0.20, uv.y) * smoothstep(1.0, 0.80, uv.y);
@@ -1854,7 +2307,6 @@
             let ptrX = 0.5, ptrY = 0.5, ptrGoal = 0, ptrVal = 0, paused = false;
 
             function resize() {
-                // Resolución reducida 0.35x (tope 360px): 18x más rápida y cero sobrecarga en celulares
                 const w = Math.min(360, Math.max(64, Math.floor(stage.clientWidth * 0.35)));
                 const h = Math.min(280, Math.max(64, Math.floor(stage.clientHeight * 0.35)));
                 canvas.width = w;
@@ -1884,7 +2336,7 @@
         })();
 
         // =========================================================
-        // 4. FÍSICA DE RESORTE DE 2° ORDEN PARA EL LOGO + PARALLAX DEL FONDO F1
+        // 4. FÍSICA DE RESORTE DE 2° ORDEN PARA EL LOGO + PARALLAX
         // =========================================================
         const LogoSpring = (() => {
             const box = document.getElementById('logoSpringBox');
@@ -1936,7 +2388,7 @@
         }
 
         // =========================================================
-        // 5. CONFIGURADOR DE VEHÍCULO, AÑOS CERÁMICOS & WHATSAPP
+        // 5. CONFIGURADOR DE VEHÍCULO, AÑOS CERÁMICOS (DORADO / DIAMANTE) & WHATSAPP
         // =========================================================
         function buildWppUrl(serviceText) {
             const msg = `¡Hola Mike de Shark North! 🦈\n\nQuisiera consultar presupuesto a domicilio para:\n• *Vehículo:* ${selectedVehicle}\n• *Servicio:* ${serviceText}`;
@@ -1944,8 +2396,10 @@
         }
 
         function refreshAllWppLinks() {
+            const topBtn = document.getElementById('topWppBtn');
             const heroBtn = document.getElementById('heroMainWpp');
             const footBtn = document.getElementById('footerWppBtn');
+            if (topBtn) topBtn.href = buildWppUrl("Consulta directa desde barra superior");
             if (heroBtn) heroBtn.href = buildWppUrl("Asesoramiento y Presupuesto General");
             if (footBtn) footBtn.href = buildWppUrl("Coordinar turno a domicilio");
             document.querySelectorAll('#vehicleTypeGrid .vt-btn').forEach(b => b.classList.toggle('active', b.dataset.veh === selectedVehicle));
@@ -1966,32 +2420,52 @@
         }
 
         function selectCeramicYear(yr, btn) {
-            playMechClick(780);
+            playMechClick(yr === '4 Años' ? 920 : 780);
             selectedCeramicYear = yr;
+            const card = document.getElementById('ceramicStageCard');
+            const chip = document.getElementById('ceramicBadgeChip');
+            const isDiamond = yr === '4 Años';
+
             document.querySelectorAll('.ceramic-years-bar .yr-btn').forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
-            document.getElementById('ceramicCardSummary').textContent = `Seleccionado: ${yr} · Ver Detalles`;
+
+            if (card) card.classList.toggle('diamond-mode', isDiamond);
+            if (chip) chip.textContent = isDiamond ? '💎 Modo Diamante' : 'Top Demanda';
+            document.getElementById('ceramicCardSummary').textContent = isDiamond
+                ? 'Seleccionado: 4 Años Diamante · Ver Detalles'
+                : `Seleccionado: ${yr} · Ver Detalles`;
         }
 
         // =========================================================
-        // 6. MODAL DE CATEGORÍAS AWWWARDS (STAGGER + TELEMETRY BARS)
+        // 6. MODAL DE CATEGORÍAS AWWWARDS (TEXTOS ACTUALIZADOS)
         // =========================================================
+        const MICROBES_HTML = `
+            <div class="microbes-field" aria-hidden="true">
+                <svg class="microbe-bug microbe-1" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="16" cy="16" rx="7" ry="4.5" fill="currentColor" fill-opacity="0.16"/><path d="M9 16 C6 13, 4 19, 2 15 M16 11.5 V9 M13 12 L11 9.5 M19 12 L21 9.5 M16 20.5 V23"/></svg>
+                <svg class="microbe-bug microbe-2" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="16" cy="16" r="5.5" fill="currentColor" fill-opacity="0.16"/><path d="M16 7 V10 M16 22 V25 M7 16 H10 M22 16 H25"/></svg>
+                <svg class="microbe-bug microbe-3" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="10" y="12" width="12" height="8" rx="4" fill="currentColor" fill-opacity="0.18"/><path d="M10 16 C7 14, 5 18, 3 16"/></svg>
+            </div>
+        `;
+
         const SERVICES_DATA = {
             ceramicos: {
                 title: "Sellados Cerámicos (1 a 4 Años)",
                 getItems: () => {
                     const yrNum = parseInt(selectedCeramicYear, 10) || 1;
                     const durPct = Math.min(100, 40 + yrNum * 15);
+                    const isDiam = selectedCeramicYear === '4 Años';
                     return [
                         {
-                            name: `Sellado Cerámico · ${selectedCeramicYear}`,
+                            name: isDiam ? `Sellado Cerámico · 4 Años (Edición Diamante)` : `Sellado Cerámico · ${selectedCeramicYear}`,
                             desc: "Protección química de alta dureza sobre la laca. Brillo espejo profundo, repelencia extrema al agua y barrera contra rayos UV, lluvia ácida y excrementos.",
-                            metrics: [["Brillo", 98], ["Hidrofobia", 100], ["Duración", durPct]]
+                            metrics: [["Brillo", 98], ["Hidrofobia", 100], ["Duración", durPct]],
+                            extraClass: isDiam ? "spec-diamond" : ""
                         },
                         {
                             name: "Planes Disponibles (1 / 2 / 3 y 4 Años)",
                             desc: "Adaptamos el recubrimiento cerámico según el uso y exposición de tu vehículo, siempre previa preparación y descontaminado profesional a domicilio.",
-                            metrics: [["Protección UV", 96], ["Resistencia", 95], ["Acabado", 99]]
+                            metrics: [["Protección UV", 96], ["Resistencia", 95], ["Acabado", 99]],
+                            extraClass: ""
                         }
                     ];
                 }
@@ -2002,17 +2476,20 @@
                     {
                         name: "Limpieza Detallada Profesional",
                         desc: "Lavado profundo con pre-lavado Snow Foam (espuma activa pH neutro), limpieza minuciosa de llantas, pasarruedas, emblemas y marcos sin micro-rayas.",
-                        metrics: [["Espuma pH", 100], ["Detalle", 98], ["Seguridad", 100]]
+                        metrics: [["Espuma pH", 100], ["Detalle", 98], ["Seguridad", 100]],
+                        extraClass: "spec-clean-green"
                     },
                     {
                         name: "Detallados Exteriores",
-                        desc: "Descontaminado químico y mecánico (clay bar) para remover impurezas incrustadas en el barniz, devolviendo suavidad y claridad total a la pintura.",
-                        metrics: [["Suavidad", 99], ["Descontam.", 100], ["Preparación", 97]]
+                        desc: "Detallado exterior de pintura: además de la descontaminación química y mecánica (clay bar) para remover impurezas incrustadas en el barniz, se aplica una cera protectora (cerámica o cera carnauba) devolviendo suavidad, protección y claridad total.",
+                        metrics: [["Suavidad", 99], ["Descontam.", 100], ["Protección", 98]],
+                        extraClass: ""
                     },
                     {
                         name: "Pulidos",
-                        desc: "Corrección de barniz con pulidoras orbitales de precisión para eliminar swirls (telarañas), marcas de lavado, rayas superficiales y recuperar el brillo original.",
-                        metrics: [["Corrección", 96], ["Brillo", 99], ["Claridad", 98]]
+                        desc: "Corrección de barniz con pulidoras orbitales de precisión para eliminar swirls, marcas de lavado, rayas superficiales y recuperar el brillo original.",
+                        metrics: [["Corrección", 96], ["Brillo", 99], ["Claridad", 98]],
+                        extraClass: "spec-polish-sheen"
                     }
                 ]
             },
@@ -2022,17 +2499,21 @@
                     {
                         name: "Desinfección Interior",
                         desc: "Higienización profunda de cabina, conductos de ventilación, alfombras, techos y butacas con vapor de alta temperatura y limpiadores específicos.",
-                        metrics: [["Higiene", 100], ["Vapor", 98], ["Aroma", 95]]
+                        metrics: [["Higiene", 100], ["Vapor", 98], ["Aroma", 95]],
+                        extraClass: "",
+                        microbes: true
                     },
                     {
                         name: "Sellado de Telas y Cueros",
                         desc: "Protección hidrofóbica para tapizados de tela (repele líquidos y manchas) y nutrición/sellado mate sin grasitud para butacas y volantes de cuero.",
-                        metrics: [["Repelencia", 97], ["Acabado Mate", 100], ["Protección", 96]]
+                        metrics: [["Repelencia", 97], ["Acabado Mate", 100], ["Protección", 96]],
+                        extraClass: ""
                     },
                     {
                         name: "Sellado de Plásticos y Gomas",
                         desc: "Acondicionamiento y sellado protector anti-estático y filtro UV para tableros, paneles de puertas, burletes y molduras exteriores.",
-                        metrics: [["Filtro UV", 95], ["Anti-Polvo", 94], ["Renovación", 98]]
+                        metrics: [["Filtro UV", 95], ["Anti-Polvo", 94], ["Renovación", 98]],
+                        extraClass: ""
                     }
                 ]
             },
@@ -2042,12 +2523,14 @@
                     {
                         name: "Ceras (Cerámicas, Carnauba y Sintéticas)",
                         desc: "Aplicación artesanal según el acabado deseado: calidez y profundidad con Carnauba pura, durabilidad sintética o refuerzo hidrofóbico con cera cerámica.",
-                        metrics: [["Profundidad", 98], ["Brillo", 97], ["Hidrofobia", 94]]
+                        metrics: [["Profundidad", 98], ["Brillo", 97], ["Hidrofobia", 94]],
+                        extraClass: ""
                     },
                     {
                         name: "Sellado de Cristales",
                         desc: "Tratamiento repelente de lluvia para parabrisas, lunetas y vidrios laterales. Mejora drásticamente la visibilidad nocturna y bajo lluvia en ruta.",
-                        metrics: [["Visibilidad", 100], ["Repelencia", 100], ["Seguridad", 99]]
+                        metrics: [["Visibilidad", 100], ["Repelencia", 100], ["Seguridad", 99]],
+                        extraClass: ""
                     }
                 ]
             }
@@ -2059,7 +2542,8 @@
             document.getElementById('modalServiceTitle').textContent = `// ${data.title}`;
             const body = document.getElementById('modalServiceBody');
             body.innerHTML = data.getItems().map((item, idx) => `
-                <div class="modal-spec-item" style="animation-delay:${idx * 75}ms;">
+                <div class="modal-spec-item ${item.extraClass || ''}" style="animation-delay:${idx * 75}ms;">
+                    ${item.microbes ? MICROBES_HTML : ''}
                     <h4>${item.name}</h4>
                     <p>${item.desc}</p>
                     <div class="spec-metrics-row">
@@ -2102,46 +2586,181 @@
         }
 
         // =========================================================
-        // 7. LIGHTBOX CINEMATOGRÁFICO (MASK WIPE + MINIATURAS)
+        // 7. MOTOR DE VIDEO ULTRA RÁPIDO + BOOMERANG ADAPTATIVO (0 LAGS)
         // =========================================================
-        const FLEET_PHOTOS = [
-            { file: '20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp', caption: 'Tratamiento Cerámico · Terminación Espejo y Protección UV' },
-            { file: 'black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp', caption: 'Pulido de Precisión & Detallado de Escapes / Sector Posterior' },
-            { file: 'front-view-black-sedan-sport-car-bridge.webp', caption: 'Sellado Integral · Cristales, Ópticas y Carrocería Oscura' },
-            { file: 'metallic-color-mini-coupe-driving-accross-forest.webp', caption: 'Ceras Cerámicas & Carnauba · Realce Metálico e Hidrofóbico' }
+        const BoomerangEngine = (() => {
+            const stateMap = new WeakMap();
+
+            function attach(video) {
+                if (stateMap.has(video)) return;
+                const st = { dir: 1, raf: 0, active: false, lastSeekAt: 0, slowCount: 0, nativeReverseOk: null, bounceLock: false };
+                stateMap.set(video, st);
+
+                video.defaultMuted = true;
+                video.muted = true;
+
+                function pulseSmoothReset() {
+                    video.style.opacity = '0.78';
+                    video.currentTime = 0;
+                    video.playbackRate = 1;
+                    st.dir = 1;
+                    video.play().catch(() => {});
+                    setTimeout(() => { video.style.opacity = '1'; st.bounceLock = false; }, 160);
+                }
+
+                function stepReverse() {
+                    if (!st.active || st.dir !== -1) return;
+                    const now = performance.now();
+
+                    if (video.currentTime <= 0.08) {
+                        video.playbackRate = 1;
+                        st.dir = 1;
+                        st.bounceLock = false;
+                        video.play().catch(() => {});
+                        return;
+                    }
+
+                    // Si el navegador soporta playbackRate = -1 nativo, solo supervisamos que avance atrás
+                    if (st.nativeReverseOk === true) {
+                        st.raf = requestAnimationFrame(stepReverse);
+                        return;
+                    }
+
+                    // En Chrome/Android: retroceso fluido solo si el decoder no está ocupado y no traba
+                    if (!video.seeking && now - st.lastSeekAt >= 42) {
+                        const dt = Math.min(0.08, (now - (st.lastSeekAt || now - 42)) / 1000);
+                        const stepStart = performance.now();
+                        st.lastSeekAt = now;
+                        try {
+                            video.currentTime = Math.max(0, video.currentTime - Math.max(0.045, dt));
+                        } catch (_) {}
+                        video.addEventListener('seeked', () => {
+                            const decodeMs = performance.now() - stepStart;
+                            if (decodeMs > 85) st.slowCount++;
+                            else st.slowCount = Math.max(0, st.slowCount - 1);
+                            // Si el MP4 tiene keyframes muy separados y demora en móvil, pasamos a reinicio suave sin tirones
+                            if (st.slowCount >= 3) {
+                                st.dir = 1;
+                                pulseSmoothReset();
+                            }
+                        }, { once: true });
+                    }
+                    st.raf = requestAnimationFrame(stepReverse);
+                }
+
+                video.addEventListener('timeupdate', () => {
+                    if (!st.active || st.bounceLock || !video.duration || video.duration < 0.4) return;
+                    if (st.dir === 1 && video.currentTime >= video.duration - 0.09) {
+                        st.bounceLock = true;
+                        st.dir = -1;
+                        st.slowCount = 0;
+                        st.lastSeekAt = 0;
+
+                        // Intentar reversa nativa (funciona en Safari/WebKit)
+                        if (st.nativeReverseOk !== false) {
+                            try {
+                                const before = video.currentTime;
+                                video.playbackRate = -1;
+                                video.play().catch(() => {});
+                                setTimeout(() => {
+                                    if (st.dir === -1 && Math.abs(video.currentTime - before) > 0.05) {
+                                        st.nativeReverseOk = true;
+                                    } else {
+                                        st.nativeReverseOk = false;
+                                        try { video.pause(); video.playbackRate = 1; } catch (_) {}
+                                        stepReverse();
+                                    }
+                                }, 180);
+                                return;
+                            } catch (_) {
+                                st.nativeReverseOk = false;
+                            }
+                        }
+                        try { video.pause(); video.playbackRate = 1; } catch (_) {}
+                        stepReverse();
+                    }
+                });
+            }
+
+            function play(video) {
+                attach(video);
+                const st = stateMap.get(video);
+                st.active = true;
+                if (st.dir === 1) {
+                    video.playbackRate = 1;
+                    video.play().catch(() => {});
+                }
+            }
+
+            function pause(video) {
+                const st = stateMap.get(video);
+                if (!st) return;
+                st.active = false;
+                cancelAnimationFrame(st.raf);
+                try { video.pause(); } catch (_) {}
+            }
+
+            return { attach, play, pause };
+        })();
+
+        // =========================================================
+        // 8. LIGHTBOX CINEMATOGRÁFICO PARA LOS 4 VIDEOS MP4
+        // =========================================================
+        const FLEET_VIDEOS = [
+            {
+                file: 'tratamientoceramico.mp4',
+                poster: '20250527_Porsche-Canada_Porsche-Experience-Centre-Toronto_Media-Day_Lenssen-Photo_69374.webp',
+                caption: 'Tratamiento Cerámico · Terminación Espejo y Protección UV'
+            },
+            {
+                file: 'cromos.mp4',
+                poster: 'black-sport-car-back-vire-motor-gas-pipes-blank-space-registration-number.webp',
+                caption: 'Pulido & Cromos · Detallado de Precisión y Brillo Intenso'
+            },
+            {
+                file: 'ceramicointegral.mp4',
+                poster: 'front-view-black-sedan-sport-car-bridge.webp',
+                caption: 'Sellado Integral · Cerámico Completo de Carrocería'
+            },
+            {
+                file: 'cerasyproteccion.mp4',
+                poster: 'metallic-color-mini-coupe-driving-accross-forest.webp',
+                caption: 'Ceras & Protección · Repelencia Hidrofóbica Extrema'
+            }
         ];
         const RAW_BASE = 'https://raw.githubusercontent.com/linkuniversal/sharknorth/main/';
         let lbIdx = 0;
 
-        function getPhotoUrl(file, raw = false) {
+        function getMediaUrl(file, raw = false) {
             return (raw ? RAW_BASE : './') + encodeURIComponent(file);
         }
 
         function buildCineThumbs() {
             const row = document.getElementById('cineThumbsRow');
-            row.innerHTML = FLEET_PHOTOS.map((p, i) => `
-                <button type="button" class="cine-thumb ${i === lbIdx ? 'active' : ''}" onclick="jumpLightbox(${i})" aria-label="Ver unidad ${i + 1}">
-                    <img src="${getPhotoUrl(p.file)}" alt="Unidad ${i + 1}" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='${getPhotoUrl(p.file, true)}';}">
+            row.innerHTML = FLEET_VIDEOS.map((p, i) => `
+                <button type="button" class="cine-thumb ${i === lbIdx ? 'active' : ''}" onclick="jumpLightbox(${i})" aria-label="Ver video ${i + 1}">
+                    <img src="${getMediaUrl(p.poster)}" alt="Miniatura ${i + 1}" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='${getMediaUrl(p.poster, true)}';}">
                 </button>
             `).join('');
         }
 
         function renderLightbox(animClass = 'anim-open') {
-            const item = FLEET_PHOTOS[lbIdx];
-            const img = document.getElementById('lbImg');
-            img.className = 'cine-lb-img';
-            void img.offsetWidth; // Reinicia la transición CSS cinematográfica
-            img.dataset.fb = '';
-            img.onerror = function() {
-                if (!this.dataset.fb) {
-                    this.dataset.fb = '1';
-                    this.src = getPhotoUrl(item.file, true);
-                }
-            };
-            img.src = getPhotoUrl(item.file);
-            img.classList.add(animClass);
+            const item = FLEET_VIDEOS[lbIdx];
+            const vid = document.getElementById('lbVideo');
+            BoomerangEngine.pause(vid);
 
-            document.getElementById('lbCounter').textContent = `UNIDAD 0${lbIdx + 1} / 0${FLEET_PHOTOS.length}`;
+            vid.className = 'cine-lb-img';
+            void vid.offsetWidth;
+            vid.poster = getMediaUrl(item.poster);
+            vid.innerHTML = `
+                <source src="${getMediaUrl(item.file)}" type="video/mp4">
+                <source src="${getMediaUrl(item.file, true)}" type="video/mp4">
+            `;
+            vid.load();
+            vid.classList.add(animClass);
+            BoomerangEngine.play(vid);
+
+            document.getElementById('lbCounter').textContent = `UNIDAD 0${lbIdx + 1} / 0${FLEET_VIDEOS.length}`;
             document.getElementById('lbCaption').textContent = item.caption;
             document.querySelectorAll('.cine-thumb').forEach((th, i) => th.classList.toggle('active', i === lbIdx));
         }
@@ -2157,12 +2776,13 @@
         function closeLightbox(e) {
             if (e && e.target !== document.getElementById('lightboxModal')) return;
             playMechClick(480);
+            BoomerangEngine.pause(document.getElementById('lbVideo'));
             document.getElementById('lightboxModal').classList.remove('active');
         }
 
         function navLightbox(dir) {
             playMechClick(620);
-            lbIdx = (lbIdx + dir + FLEET_PHOTOS.length) % FLEET_PHOTOS.length;
+            lbIdx = (lbIdx + dir + FLEET_VIDEOS.length) % FLEET_VIDEOS.length;
             renderLightbox(dir > 0 ? 'anim-next' : 'anim-prev');
         }
 
@@ -2185,7 +2805,7 @@
         window.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 document.getElementById('serviceModal').classList.remove('active');
-                document.getElementById('lightboxModal').classList.remove('active');
+                closeLightbox();
             } else if (document.getElementById('lightboxModal').classList.contains('active')) {
                 if (e.key === 'ArrowLeft') navLightbox(-1);
                 if (e.key === 'ArrowRight') navLightbox(1);
@@ -2193,7 +2813,7 @@
         });
 
         // =========================================================
-        // 8. BLINDAJE DE VIDEO, SCROLL REVEAL & PREFETCH EN WORKER SECUNDARIO
+        // 9. BLINDAJE DE VIDEOS (HERO + GALERÍA) & SCROLL REVEAL
         // =========================================================
         function initVideoAndReveals() {
             const vid = document.getElementById('heroBgVideo');
@@ -2217,6 +2837,26 @@
                 }
             }
 
+            // Videos de ejemplos en Boomerang gestionados por viewport para carga veloz
+            const fleetVideos = document.querySelectorAll('.boomerang-video');
+            fleetVideos.forEach(v => BoomerangEngine.attach(v));
+
+            if ('IntersectionObserver' in window) {
+                const fleetObs = new IntersectionObserver(entries => {
+                    entries.forEach(en => {
+                        if (en.isIntersecting) {
+                            if (en.target.preload === 'metadata') en.target.preload = 'auto';
+                            BoomerangEngine.play(en.target);
+                        } else {
+                            BoomerangEngine.pause(en.target);
+                        }
+                    });
+                }, { rootMargin: '180px 0px', threshold: 0.05 });
+                fleetVideos.forEach(v => fleetObs.observe(v));
+            } else {
+                fleetVideos.forEach(v => BoomerangEngine.play(v));
+            }
+
             const reveals = document.querySelectorAll('.reveal-fx');
             if ('IntersectionObserver' in window) {
                 const revObs = new IntersectionObserver(entries => {
@@ -2234,7 +2874,7 @@
         }
 
         function initBackgroundSpeedInfra() {
-            // 1. Dedicated Web Worker: precarga las 4 fotos en hilo secundario después de pintar la portada
+            // Dedicated Web Worker: precarga posters webp + headers iniciales de los videos ligeros tras pintar portada
             setTimeout(() => {
                 try {
                     const workerCode = `
@@ -2243,15 +2883,15 @@
                         };
                     `;
                     const w = new Worker(URL.createObjectURL(new Blob([workerCode], { type: 'application/javascript' })));
-                    w.postMessage(FLEET_PHOTOS.map(p => getPhotoUrl(p.file)));
+                    w.postMessage(FLEET_VIDEOS.map(p => getMediaUrl(p.poster)));
                 } catch (_) {}
             }, 900);
 
-            // 2. Service Worker CacheStorage para apertura en 0 ms en siguientes visitas
+            // Service Worker CacheStorage (omite range/video para no bloquear streaming MP4)
             if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
                 try {
                     const swCode = `
-                        const C = 'shark-north-v1';
+                        const C = 'shark-north-v2';
                         self.addEventListener('install', () => self.skipWaiting());
                         self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
                         self.addEventListener('fetch', e => {
